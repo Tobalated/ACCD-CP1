@@ -1,49 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Responsive example</title>
-        <style>
-            body {
-                margin: 0;
-                font-family: Arial, Helvetica, sans-serif;
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/
+  font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Responsive Navbar</title>
+  <style>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
 
-            }
-            header,
-            footer {
-                background-color: rgb(100, 200, 255);
-            }
+body {
+  height: 100vh;
+  background-color: #000;
+  background-image: url('https://images.pexels.com/photos/10585045/pexels-photo-10585045.jpeg?_gl=1*124r04r*_ga*MTM4MzkxNDU5MS4xNzU5MjU3MDYz*_ga_8JE65Q40S6*czE3NTkyNTcwNjMkbzEkZzAkdDE3NTkyNTcwNjMkajYwJGwwJGgw');
+  background-size: cover;
+  background-position: center;
+}
+li{
+    list-style: none;
+}
 
-            nav ul {
-                margin-top: 0;
-                margin-bottom: 0;
-                padding: 20px;
-                list-style: none;
-                text-align: center;
-            }
-            nav ul li {
-                margin: 10px auto 10px auto;
-                border-bottom: 2px solid black;
-            }
-            
-        </style>
-    </head>
-    <body>
-        <header
-        <nav> 
-                <ul>
-                    <li><a href="somelinkhere">Home</a></li>
-                    <li><a href="somelinkhere">Work</a></li>
-                    <li><a href="somelinkhere">Home</a></li>
-                </ul>
-            </nav>
-        </header>
-        <main>
+a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem
+}
 
-        </main>
-        <footer>
+a:hover{
+    color: blue
+}
+/* HEADER */
+header{
+    position: relative;
+    padding: 0 2rem;
+}
+.navbar {
+    width: 100%;
+    height: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-        </footer>
-    </body>
+.navbar .logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar .links{
+    display: flex;
+    gap: 2rem;
+}
+
+
+.navbar .toggle_btn{
+color: #fff;    
+font-size: 1.5rem; 
+cursor: pointer;  
+display: none; 
+}
+
+.action_btn {
+    background-color: blue;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: scale 0.2 ease;
+}
+
+.action_btn:hover {
+    scale: 1.09;
+    color: #fff;
+}
+
+.action_btn:active {
+    scale: 0.95;
+}
+/* DROPDOWN MENU */
+.dropdown_menu {
+position: absolute;
+right: 2rem;
+top: 60px;
+width: 300px;
+background: rgba(255, 255, 255, 0.1);
+backdrop-filter: blur(15px);
+border-radius: 10px;
+overflow: hidden;
+}
+
+.dropdown_menu li {
+ padding: 0.7rem;   
+ display: flex;
+ align-items: center;
+ justify-content: center;
+
+
+}
+.dropdown_menu .action_btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 717px) {
+    .navbar .links,
+    .navbar .action_btn {
+        display: none;
+    }
+
+    .navbar .toggle_btn{
+        display: block;
+    }
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <div class="logo"><a href="#">My First Website</a></div>
+      <ul class="links">
+        <li><a href="hero">Home</a></li>
+        <li><a href="about">About</a></li>
+        <li><a href="services">Services</a></li>
+        <li><a href="contact">Contact</a></li>
+      </ul>
+      <a href="#" class="action_btn">Get Started</a>
+      <div class="toggle_btn">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+
+    <div class="dropdown_menu">
+        <li><a href="hero">Home</a></li>
+        <li><a href="about">About</a></li>
+        <li><a href="services">Services</a></li>
+        <li><a href="contact">Contact</a></li>
+        <li><a href="#" class="action_btn">Get Started</a></li>
+
+    </div>
+  </header>
+</body>
 </html>
