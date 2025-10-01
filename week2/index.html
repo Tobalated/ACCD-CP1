@@ -16,7 +16,7 @@
 }
 
 body {
-  height: 100vh;
+  height: 100px;
   background-color: #000;
   background-image: url('https://images.pexels.com/photos/10585045/pexels-photo-10585045.jpeg?_gl=1*124r04r*_ga*MTM4MzkxNDU5MS4xNzU5MjU3MDYz*_ga_8JE65Q40S6*czE3NTkyNTcwNjMkbzEkZzAkdDE3NTkyNTcwNjMkajYwJGwwJGgw');
   background-size: cover;
@@ -137,6 +137,14 @@ transition: height .2s cub-bezier(0.175, 0.885, 0.32, 1.275);
         display: block;
     }
 }
+
+@media (max-width: 576px) {
+}
+    .dropdown_menu{
+        left: 2rem;
+        width: unset;
+        }
+
   </style>
 </head>
 <body>
@@ -164,16 +172,26 @@ transition: height .2s cub-bezier(0.175, 0.885, 0.32, 1.275);
 
     </div>
   </header>
+
+  <main>
+    <section id="hero">
+        <h1>Welcome</h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Necessitatibus expedita temporibus libero aperiam labore eos pariatur et repellat, voluptatum unde, soluta velit, aspernatur illum iure. Itaque excepturi distinctio debitis culpa?
+        </p>
+    </section>
+  </main>
   <script>
     const toggleBtn = document.querySelector('.toggle_btn')
     const toggleBtnIcon = document.querySelector('.toggle_btn i')
     const dropdownMenu = document.querySelector('.dropdown_menu')
 
-    toggleleBtn.onclick = function () {
-        dropDownMenu.classList.toggle('open')
-        const isOpen = dropDownMenu.classList.contains('open')
+    toggleBtn.onclick = function () {
+        dropdownMenu.classList.toggle('open')
+        const isOpen = dropdownMenu.classList.contains('open')
 
-        toggleBtnIcon.classList = isOpen
+        toggleBtnIcon.className = isOpen
         ? 'fa-solid fa-xmark'
         : 'fa-solid fa-bars'
 
