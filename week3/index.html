@@ -1,52 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="gallery-container">
-      <h1>Photo Gallery</h1>
-      <p>Click the buttons to filter the projects by category.</p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Image Display Gallery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-      <div class="filter-buttons">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="web">Web Design</button>
-        <button class="filter-btn" data-filter="branding">Branding</button>
-        <button class="filter-btn" data-filter="photography">
-          Photography
-        </button>
-      </div>
+  <nav class="navbar">
+    <div class="logo">LOGO</div>
+    <ul class="nav-links">
+      <li><a href="#">Link 1</a></li>
+      <li><a href="#">Link 2</a></li>
+      <li><a href="#">Link 3</a></li>
+      <li><a href="#">Link 4</a></li>
+    </ul>
+  </nav>
 
-      <div class="gallery-grid">
-        <div class="gallery-item web">
-          <img src="images/web-design1.jpg" alt="Web Project 1" />
-        </div>
-
-        <div class="gallery-item branding">
-          <img src="images/branding1.jpg" alt="Branding Project 1" />
-        </div>
-
-        <div class="gallery-item photography">
-          <img src="images/photography1.jpg" alt="Photography Project 1" />
-        </div>
-
-        <div class="gallery-item branding">
-          <img src="images/branding2.jpg" alt="Branding Project 2" />
-        </div>
-
-        <div class="gallery-item web">
-          <img src="images/web-design2.jpg" alt="Web Project 2" />
-        </div>
-
-        <div class="gallery-item photography">
-          <img src="images/photography2.jpg" alt="Photography Project 2" />
-        </div>
-      </div>
+  <main class="gallery-container">
+    <div class="thumbnails">
+      <img src="images/img1.jpg" alt="Thumb 1" class="thumb active">
+      <img src="images/img2.jpg" alt="Thumb 2" class="thumb">
+      <img src="images/img3.jpg" alt="Thumb 3" class="thumb">
+      <img src="images/img4.jpg" alt="Thumb 4" class="thumb">
     </div>
 
-    <script src="week3/script.js"></script>
-  </body>
+    <div class="main-display">
+      <img src="images/img1.jpg" alt="Main Display" id="mainImage">
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
 </html>
