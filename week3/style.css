@@ -79,7 +79,7 @@ body {
   background-color: #ccc;
 }
 
-/* ✅ Responsive Design */
+/* Responsive Design */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
