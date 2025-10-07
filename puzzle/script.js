@@ -26,8 +26,8 @@ puzzle.style.gap = "5px";
 document.body.appendChild(puzzle);
 
 // ✅ Use ONE fixed image
-const puzzleImage = "https://picsum.photos/id/237/300/300"; // Example static image
-// You can replace with your own: e.g., "images/puzzle.jpg"
+const puzzleImage = "https://picsum.photos/id/1025/300/300"; // Static image
+// You can replace with: "images/mypuzzle.jpg"
 
 // Create 4 pieces (hidden initially)
 const pieces = [];
@@ -47,10 +47,10 @@ for (let i = 0; i < 4; i++) {
     i === 2 ? "0 -150px" :
     "-150px -150px";
 
-  // Hide initially
+  // Hidden state
   piece.style.backgroundColor = "#d3d3d3";
   piece.style.backgroundBlendMode = "color";
-  
+
   puzzle.appendChild(piece);
   pieces.push(piece);
 }
@@ -76,31 +76,15 @@ resetBtn.onmouseenter = () => (resetBtn.style.background = "#555");
 resetBtn.onmouseleave = () => (resetBtn.style.background = "#333");
 document.body.appendChild(resetBtn);
 
-// === Questions Data === //
+// === Questions === //
 const questions = [
-  {
-    text: "1️⃣ What does HTML stand for?",
-    options: ["Hyper Text Markup Language", "High Tech Machine Learning", "Hyper Tool Multi Language"],
-    answer: 0
-  },
-  {
-    text: "2️⃣ What does CSS control?",
-    options: ["Styling", "Data", "Servers"],
-    answer: 0
-  },
-  {
-    text: "3️⃣ What tag runs JavaScript?",
-    options: ["<java>", "<script>", "<code>"],
-    answer: 1
-  },
-  {
-    text: "4️⃣ UX means?",
-    options: ["User Experience", "Universal Execution", "Unique Exchange"],
-    answer: 0
-  }
+  { text: "1️⃣ What does HTML stand for?", options: ["Hyper Text Markup Language", "High Tech Machine Learning", "Hyper Tool Multi Language"], answer: 0 },
+  { text: "2️⃣ What does CSS control?", options: ["Styling", "Data", "Servers"], answer: 0 },
+  { text: "3️⃣ What tag runs JavaScript?", options: ["<java>", "<script>", "<code>"], answer: 1 },
+  { text: "4️⃣ UX means?", options: ["User Experience", "Universal Execution", "Unique Exchange"], answer: 0 }
 ];
 
-// === Functions === //
+// === Logic === //
 function loadQuestions() {
   questionContainer.innerHTML = '';
   questions.forEach((q, index) => {
@@ -110,11 +94,11 @@ function loadQuestions() {
     qDiv.style.marginBottom = '10px';
     qDiv.style.borderRadius = '10px';
     qDiv.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
-    
+
     const qText = document.createElement('p');
     qText.textContent = q.text;
     qDiv.appendChild(qText);
-    
+
     q.options.forEach((opt, i) => {
       const btn = document.createElement('button');
       btn.textContent = opt;
@@ -127,7 +111,7 @@ function loadQuestions() {
       btn.onclick = () => checkAnswer(index, i, btn);
       qDiv.appendChild(btn);
     });
-    
+
     questionContainer.appendChild(qDiv);
   });
 }
@@ -143,7 +127,7 @@ function checkAnswer(qIndex, optionIndex, btn) {
 }
 
 function revealPiece(index) {
-  pieces[index].style.backgroundColor = "transparent"; // reveal
+  pieces[index].style.backgroundColor = "transparent";
   pieces[index].style.backgroundBlendMode = "normal";
 
   const allRevealed = pieces.every(p => p.style.backgroundBlendMode === "normal");
