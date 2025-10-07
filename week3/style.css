@@ -123,3 +123,22 @@ body {
     padding: 15px;
   }
 }
+
+/* Smooth fade effect when switching images */
+#main-image {
+  transition: opacity 0.6s ease-in-out;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+/* Optional: thumbnail hover effect */
+.thumbnail {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.thumbnail:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}

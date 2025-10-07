@@ -1,0 +1,64 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  background: #fafafa;
+  padding: 20px;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+#puzzle {
+  width: 300px;
+  height: 300px;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 5px;
+}
+
+.piece {
+  background-image: url("images/reward.jpg");
+  background-size: 300px 300px;
+  border: 2px solid #333;
+}
+
+#piece1 { background-position: 0 0; }
+#piece2 { background-position: -150px 0; }
+#piece3 { background-position: 0 -150px; }
+#piece4 { background-position: -150px -150px; }
+
+.hidden {
+  background: #d3d3d3;
+  border: 2px dashed #999;
+}
+
+#questions {
+  max-width: 500px;
+  margin: 20px auto;
+  text-align: left;
+}
+
+.question {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
+}
+
+button {
+  padding: 8px 16px;
+  margin-top: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #555;
+}
