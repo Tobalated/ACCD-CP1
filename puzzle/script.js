@@ -157,7 +157,7 @@ function checkAnswer(qIndex, optionIndex, btn) {
   const qDiv = btn.parentElement; // get the question container
 
   if (optionIndex === correct) {
-    btn.style.background = "#4CAF50";
+    btn.style.background = "#3762acff";
     revealPiece(qIndex);
   } else {
     btn.style.background = "#E74C3C";
@@ -285,8 +285,8 @@ resetBtn.style.color = "white";
 resetBtn.style.border = "none";
 resetBtn.style.borderRadius = "8px";
 resetBtn.style.cursor = "pointer";
-resetBtn.onmouseenter = () => (resetBtn.style.background = "#66BB6A");
-resetBtn.onmouseleave = () => (resetBtn.style.background = "#4CAF50");
+resetBtn.onmouseenter = () => (resetBtn.style.background = "#5375b1ff");
+resetBtn.onmouseleave = () => (resetBtn.style.background = "#3762acff");
 resetBtn.onclick = resetGame;
 
 // === ADD SHAKE ANIMATION STYLE === //
