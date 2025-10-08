@@ -6,7 +6,7 @@ document.body.style.padding = "20px";
 
 // Title
 const title = document.createElement("h1");
-title.textContent = "🧩 Quiz Puzzle Game (Pure JS)";
+title.textContent = "Quiz Puzzle Game (Pure JS)";
 document.body.appendChild(title);
 
 // Description
