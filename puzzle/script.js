@@ -162,7 +162,7 @@ function checkAnswer(qIndex, optionIndex, btn) {
   } else {
     btn.style.background = "#E74C3C";
 
-    // 💫 Add shake animation for wrong answers
+    // Add shake animation for wrong answers
     qDiv.style.animation = "shake 0.4s";
     setTimeout(() => {
       qDiv.style.animation = ""; // reset after animation
@@ -299,5 +299,49 @@ shakeStyle.textContent = `
   }
 `;
 document.head.appendChild(shakeStyle);
+
+// === RESPONSIVE STYLES (ALL QUESTIONS UNDER PUZZLE) === //
+const responsiveStyle = document.createElement("style");
+responsiveStyle.textContent = `
+  @media (max-width: 900px) {
+    /* Stack all content vertically */
+    div[style*="grid-template-columns"] {
+      grid-template-columns: 1fr !important;
+      justify-items: center !important;
+    }
+
+    /* Puzzle adjusts to screen size */
+    div[style*="width: 450px"] {
+      width: 90vw !important;
+      height: 90vw !important;
+      background-size: cover !important;
+      margin: 0 auto 20px auto !important;
+    }
+
+    /* Both question containers full width */
+    div[style*="max-width: 300px"] {
+      max-width: 90vw !important;
+      width: 90vw !important;
+      margin: 10px auto !important;
+      display: block !important;
+    }
+
+    /* Stack right questions under left ones */
+    div[style*="display: flex"][style*="flex-direction: column"]:nth-of-type(3) {
+      order: 3 !important;
+    }
+
+    /* General text and buttons */
+    button {
+      font-size: 14px !important;
+      padding: 8px 12px !important;
+    }
+
+    p {
+      font-size: 15px !important;
+    }
+  }
+`;
+document.head.appendChild(responsiveStyle);
 
 loadQuestions();
