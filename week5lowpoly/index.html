@@ -4,46 +4,92 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blender Nature Project Documentation</title>
-  
-  <!-- ✅ Link to your CSS file -->
   <link rel="stylesheet" href="style/style.css">
 </head>
-
 <body>
   <header>
     <h1>Blender Nature Project 🌿</h1>
+    <p>Low-Poly Tree, Rock & Grass Scene by Oloruntoba Oni</p>
     <nav>
       <button onclick="scrollToSection('ideation')">Ideation</button>
+      <button onclick="scrollToSection('process')">Process</button>
       <button onclick="scrollToSection('renders')">Renders</button>
-      <button onclick="scrollToSection('learning')">Learning Process</button>
+      <button onclick="scrollToSection('learning')">Learning Journey</button>
     </nav>
   </header>
 
   <main>
     <section id="ideation">
-      <h2>Ideation & Sketches</h2>
-      <p>My inspiration for this project came from the natural forms of rocks, ponds, and trees...</p>
-      <img src="images/sketches.jpg" alt="Sketches">
+      <h2>Ideation & Concept</h2>
+      <p>
+        For this assignment, I chose the <strong>nature theme</strong> — inspired by calm, outdoor
+        environments and the beauty of organic shapes. My goal was to create a simple, stylized
+        low-poly scene representing a tree, a rock, and grass. These three objects were chosen
+        to symbolize balance in nature — the growth of the tree, the stability of the rock, and
+        the freshness of the grass.
+      </p>
+      <p>
+        Before modeling, I created a few quick sketches of how I wanted the layout to look.
+        I decided on a slightly elevated ground with a tree as the focal point and smaller
+        details like the rock and grass to give depth.
+      </p>
+      <img src="images/sketches.jpg" alt="Sketches of nature scene">
+    </section>
+
+    <section id="process">
+      <h2>Modeling Process</h2>
+      <p>
+        I started by blocking out the basic shapes using Blender’s primitive objects —
+        <strong>cubes, spheres, and planes</strong>. Then I used the low-poly technique by
+        reducing subdivisions and applying the <strong>Shade Flat</strong> command to maintain
+        sharp polygonal edges. 
+      </p>
+      <ul>
+        <li><strong>Tree:</strong> The trunk was formed from a scaled cube, and the leaves were made using spheres with reduced faces.</li>
+        <li><strong>Rock:</strong> A simple icosphere was scaled and slightly distorted with the proportional editing tool.</li>
+        <li><strong>Grass:</strong> A plane was duplicated and used with a hair particle system to simulate low-poly grass blades.</li>
+      </ul>
+      <p>
+        Once all three objects were complete, I arranged them in a small scene and adjusted the
+        lighting with a sun lamp to highlight shadows and depth. I also experimented with
+        different camera angles for rendering.
+      </p>
     </section>
 
     <section id="renders">
       <h2>Final Renders</h2>
-      <img src="images/render1.png" alt="Render 1">
-      <img src="images/render2.png" alt="Render 2">
-      <img src="images/render3.png" alt="Render 3">
+      <p>Below are three rendered views of the final scene showcasing different camera angles:</p>
+      <div class="renders">
+        <img src="images/render1.png" alt="Render 1 - front view">
+        <img src="images/render2.png" alt="Render 2 - side view">
+        <img src="images/render3.png" alt="Render 3 - top view">
+      </div>
     </section>
 
     <section id="learning">
-      <h2>Learning Process</h2>
-      <p>This was my first time using Blender’s low-poly modeling tools...</p>
+      <h2>Learning Journey</h2>
+      <p>
+        This was my first hands-on experience creating <strong>low-poly 3D models</strong> in Blender.
+        At first, it felt unfamiliar, but I quickly learned by watching short tutorials from the
+        course’s <em>3D Design - Tools and Resources</em> page. I practiced using modifiers,
+        basic sculpting, and the outliner to organize my objects properly.
+      </p>
+      <p>
+        The most valuable takeaway from this project was understanding how simplicity in form can
+        still communicate strong design aesthetics. Working with low-poly modeling improved my
+        attention to geometry, lighting, and overall scene composition.
+      </p>
+      <p>
+        I also learned how to export models, set up cameras, and render images directly from Blender.
+        Overall, this assignment strengthened both my creative and technical design skills.
+      </p>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 Oloruntoba Oni | Blender Nature Documentation</p>
+    <p>© 2025 Oloruntoba Oni | Blender Nature Project Documentation</p>
   </footer>
 
-  <!-- ✅ Link to your JS file -->
   <script src="script/script.js"></script>
 </body>
 </html>
