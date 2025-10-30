@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EV Dashboard Design Documentation</title>
+  <title>Waze Dashboard App - Design Documentation</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <header>
-    <h1>EV Dashboard Design Process</h1>
-    <p>Designed and documented by <strong>Oloruntoba Oni</strong></p>
+    <h1>Building a Product Interface in Blender</h1>
+    <p>Designed and documented by <strong>Toba Oni</strong></p>
     <nav>
+      <a href="#intro">Introduction</a>
       <a href="#sketch">Sketch</a>
       <a href="#modeling">Modeling</a>
       <a href="#navigation">Navigation Display</a>
@@ -21,47 +22,96 @@
   </header>
 
   <main>
+
+    <!-- 1. Project Introduction -->
+    <section id="intro">
+      <h2>Brief Introduction of the Car Dashboard Project I am working on</h2>
+      <p>
+        The <strong>Waze Dashboard App</strong> project explores the redesign of the in-car interface to make navigation more intuitive, 
+        less distracting, and deeply user-centered. Many users appreciate Waze for its real-time traffic insights but find the dashboard 
+        cluttered or hard to focus on while driving. This redesign focuses on simplifying information hierarchy, improving glanceability, 
+        and aligning with the principles of safety and visual clarity in Human-Computer Interaction (HCI) design.
+      </p>
+      <p>
+        My goal with this project is to prototype a cleaner dashboard layout that highlights key driving data, route guidance, 
+        and adaptive interface behaviors in real-time all visualized through a 3D dashboard model inspired by modern EV displays.
+      </p>
+    </section>
+
+    <!-- 2. Initial Sketch -->
     <section id="sketch">
       <h2>Initial Sketch & Concept</h2>
       <img src="images/sketch.jpg" alt="Dashboard concept sketch" class="clickable">
-      <p>This sketch marks the starting point of the EV Dashboard design. I focused on achieving a smooth curve across the dash, 
-         a centered touchscreen, and ergonomic steering placement similar to modern Tesla interiors.</p>
+      <p>
+        This early sketch established the overall composition of Car dashboard Modeling I will be work on in Blender.
+        It guided the design direction, focusing on the relationship between screen placement, 
+        steering wheel alignment, and the navigation panel’s ergonomics. 
+        The sketch captures how functionality blends with minimalism to create a more balanced driver experience.
+      </p>
     </section>
 
+    <!-- 3. Modeling Process -->
     <section id="modeling">
       <h2>Modeling the Dashboard</h2>
       <img src="images/modeling1.png" alt="Modeling stage 1" class="clickable">
-      <p>The dashboard was modeled procedurally using a sinusoidal curvature and solidify modifier for realistic depth.</p>
+      <p>
+        Using Blender, I modeled the dashboard geometry starting from a curved base mesh to mimic the flow of an actual car interior. 
+        The curvature helps visually frame the driver’s perspective while emphasizing simplicity and focus.
+      </p>
       <img src="images/modeling2.png" alt="Adding steering and screen" class="clickable">
-      <p>The steering wheel and touchscreen were placed for a natural driver’s view. Adjustments were made for scale and alignment.</p>
+      <p>
+        The steering wheel and central touchscreen were modeled next, carefully positioned for natural ergonomics. 
+        Scale adjustments ensured proportional realism, and materials like matte plastic and metallic accents were applied for fidelity.
+      </p>
     </section>
 
+    <!-- 4. Navigation Display -->
     <section id="navigation">
       <h2>Integrating the Navigation Screen</h2>
       <img src="images/navigation_screen.jpg" alt="Navigation map display on dashboard" class="clickable">
-      <p>The central screen was textured with an emissive map image to simulate an active Waze-like navigation system. 
-         The blue route line and icons reflect real-time interface design inspiration.</p>
+      <p>
+        The navigation screen was textured with an emissive material representing an active route view, 
+        mimicking Waze’s signature interface. This phase focused on integrating UX and visual feedback — 
+        with glowing indicators, soft lighting, and minimal color distractions to ensure clarity while driving.
+      </p>
     </section>
 
+    <!-- 5. Final Render -->
     <section id="render">
-      <h2>Final Render</h2>
-      <img src="images/render_final.png" alt="Final dashboard render" class="clickable">
-      <p>The final render used Cycles with area and point lights to achieve realistic shading, screen glow, and material reflection.</p>
-    </section>
+  <h2>Final Renders</h2>
 
+  <!-- First render -->
+  <img src="images/render_final.png" alt="Final dashboard render - front perspective" class="clickable">
+  <p>
+    The first render captures the dashboard from a **front-facing driver’s perspective**, emphasizing the Waze interface’s 
+    clarity and the balance between the physical and digital components of the design.
+  </p>
+
+  <!-- Second render -->
+  <img src="images/render_final2.png" alt="Final dashboard render - side perspective" class="clickable">
+  <p>
+    The second render provides a side perspective of the model, highlighting material details, lighting realism, and 
+    how the navigation screen integrates with the steering and dashboard curvature. 
+    This view demonstrates the depth and spatial design choices that enhance the user’s immersive in-car experience.
+  </p>
+</section>
+
+
+    <!-- 6. Reflection -->
     <section id="reflection">
-      <h2>Reflection</h2>
-      <p>This project taught me the importance of balancing form and function in automotive design. 
-         From 3D modeling to lighting, every step contributed to a believable in-car experience. 
-         The integration of UI design principles into physical modeling also deepened my understanding of interaction design.</p>
+      <h2>Takeaways</h2>
+      <p>
+        Through this project, I explored how product design principles intersect with in-car user experience. 
+        Working between UX and 3D visualization deepened my understanding of interface hierarchy, user context, and spatial design. 
+        The Waze Dashboard App redesign demonstrates how meaningful simplicity can enhance safety and usability without compromising aesthetics.
+      </p>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 Oloruntoba Oni | EV Dashboard Design Documentation</p>
+    <p>© 2025 Toba Oni | Building a product interface in Blender</p>
   </footer>
 
-  <!-- JavaScript -->
   <script src="script.js"></script>
 </body>
 </html>
