@@ -9,109 +9,153 @@
 
 <body>
   <header>
-    <h1>Finish Blender Prototypes - PROJECT 2</h1>
+    <h1>Finished Blender Prototypes - PROJECT 2</h1>
     <p>Designed and documented by <strong>Toba Oni</strong></p>
-    <nav>
-      <a href="#intro">Introduction</a>
-      <a href="#sketch">Sketch</a>
-      <a href="#modeling">Modeling</a>
-      <a href="#navigation">Navigation Display</a>
-      <a href="#render">Final Render</a>
-      <a href="#reflection">Reflection</a>
-    </nav>
+    
   </header>
 
   <main>
 
     <!-- 1. Project Introduction -->
-    <section id="intro">
-      <h2>Brief Introduction of the Car Dashboard Project I am working on</h2>
-      <p>
-        The <strong>Waze Dashboard App</strong> project explores the redesign of the in-car interface to make navigation more intuitive, 
-        less distracting, and deeply user-centered. Many users appreciate Waze for its real-time traffic insights but find the dashboard 
-        cluttered or hard to focus on while driving. This redesign focuses on simplifying information hierarchy, improving glanceability, 
-        and aligning with the principles of safety and visual clarity in Human-Computer Interaction (HCI) design.
-      </p>
-      <p>
-        My goal with this project is to prototype a cleaner dashboard layout that highlights key driving data, route guidance, 
-        and adaptive interface behaviors in real-time all visualized through a 3D dashboard model inspired by modern EV displays.
-      </p>
-    </section>
-
-    <!-- 2. Initial Sketch -->
-    <section id="sketch">
-      <h2>Initial Sketch & Concept</h2>
-      <img src="images/sketch.jpg" alt="Dashboard concept sketch" class="clickable">
-      <p>
-        This early sketch established the overall composition of Car dashboard Modeling I will be work on in Blender.
-        It guided the design direction, focusing on the relationship between screen placement, 
-        steering wheel alignment, and the navigation panel’s ergonomics. 
-        The sketch captures how functionality blends with minimalism to create a more balanced driver experience.
-      </p>
-    </section>
-
-    <!-- 3. Modeling Process -->
-    <section id="modeling">
-      <h2>Modeling the Dashboard</h2>
-      <img src="images/modeling1.png" alt="Modeling stage 1" class="clickable">
-      <p>
-        Using Blender, I modeled the dashboard geometry starting from a curved base mesh to mimic the flow of an actual car interior. 
-        The curvature helps visually frame the driver’s perspective while emphasizing simplicity and focus.
-      </p>
-      <img src="images/modeling2.png" alt="Adding steering and screen" class="clickable">
-      <p>
-        The steering wheel and central touchscreen were modeled next, carefully positioned for natural ergonomics. 
-        Scale adjustments ensured proportional realism, and materials like matte plastic and metallic accents were applied for fidelity.
-      </p>
-    </section>
-
-    <!-- 4. Navigation Display -->
-    <section id="navigation">
-      <h2>Integrating the Navigation Screen</h2>
-      <img src="images/navigation_screen.jpg" alt="Navigation map display on dashboard" class="clickable">
-      <p>
-        The navigation screen was textured with an emissive material representing an active route view, 
-        mimicking Waze’s signature interface. This phase focused on integrating UX and visual feedback — 
-        with glowing indicators, soft lighting, and minimal color distractions to ensure clarity while driving.
-      </p>
-    </section>
-
-    <!-- 5. Final Render -->
-    <section id="render">
-  <h2>Final Renders</h2>
-
-  <!-- First render -->
-  <img src="images/render_final.png" alt="Final dashboard render - front perspective" class="clickable">
+    <section id="introduction">
+  <h1>Car Dashboard 3D Prototype</h1>
   <p>
-    The first render captures the dashboard from a **front-facing driver’s perspective**, emphasizing the Waze interface’s 
-    clarity and the balance between the physical and digital components of the design.
+    The Waze Dashboard project explores the intersection between <strong>interface design</strong> 
+    and <strong>3D visualization</strong>, transforming a 2D navigation app into an immersive 
+    in-car experience. Modeled and rendered in <strong>Blender</strong>, this prototype reimagines 
+    how drivers could interact with real-time maps, route data, and environmental awareness in a 
+    visually balanced, safety-focused dashboard. The goal was to design a 
+    <strong>functional, intuitive, and aesthetic 3D interface</strong> that enhances driver usability 
+    while integrating seamlessly with car interiors.
   </p>
 
-  <!-- Second render -->
-  <img src="images/render_final2.png" alt="Final dashboard render - side perspective" class="clickable">
+  <h3>Modeling and Design Process</h3>
   <p>
-    The second render provides a side perspective of the model, highlighting material details, lighting realism, and 
-    how the navigation screen integrates with the steering and dashboard curvature. 
-    This view demonstrates the depth and spatial design choices that enhance the user’s immersive in-car experience.
+    The Waze Dashboard model was created in <strong>Blender</strong> using simple geometric forms 
+    refined with modifiers to achieve a clean, realistic car-interior aesthetic. I began by setting 
+    up the scene, adjusting the camera and lighting for accurate proportions, and modeling the 
+    dashboard from a scaled cube. The edges were smoothed with <em>Subdivision</em> and 
+    <em>Bevel</em> modifiers, while a recessed cavity was added to host the navigation display. 
+    A glossy black plane simulated the glass screen, complemented by a metallic gray dashboard body.
+  </p>
+
+  <p>
+    The <strong>steering wheel</strong> was formed using a torus and extruded handle, positioned at 
+    driver level, and a <strong>center console</strong> was added from extruded cubes to balance 
+    the layout. Materials were applied to differentiate surfaces—metallic, matte, and reflective—
+    and the scene was illuminated with a three-point light setup and HDRI reflections. The final 
+    composition was rendered in <strong>Cycles</strong>, with the central screen prepared for a 
+    Waze interface overlay and animation, showcasing the concept of a dynamic, user-centric 
+    navigation dashboard.
   </p>
 </section>
 
 
-    <!-- 6. Reflection -->
-    <section id="reflection">
-      <h2>Takeaways</h2>
-      <p>
-        Through this project, I explored how product design principles intersect with in-car user experience. 
-        Working between UX and 3D visualization deepened my understanding of interface hierarchy, user context, and spatial design. 
-        The Waze Dashboard App redesign demonstrates how meaningful simplicity can enhance safety and usability without compromising aesthetics.
-      </p>
-    </section>
+    <section id="process-visuals">
+  <h3>Process Screenshots & Final Renders</h3>
+  <p>
+    Below are the screenshots and renders showing the step-by-step development of the 
+    Waze Dashboard app 3D prototype: from base modeling and lighting setup to the final render. 
+    Each stage captures the progressive refinement of shapes, materials, and interface layout.
+</p>
+
+<p>
+    With its clean, futuristic aesthetic, this dashboard redefines the driving experience, offering
+    a more comfortable, distraction-free interface by replacing the complexity of traditional knobs
+    and buttons with a simplified, digital approach.
+
+</p>
+
+  <div class="image-gallery">
+    <figure>
+      <img src="images/base_model.png" alt="Base Dashboard Model in Blender">
+      <figcaption><h3>Base dashboard: modeling rough geometry and layout setup</h3></figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/viewport_materials.png" alt="Viewport Material Preview">
+      <figcaption><h3>Viewport preview showing material application and lighting adjustments</h3></figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/lighting.png" alt="Lighting and Camera Setup">
+      <figcaption><h3>Lighting and camera positioning to achieve realistic depth and reflections</h3></figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/render_front.png" alt="Front Render View">
+      <figcaption><h3>Final render: front dashboard perspective with realistic shading</h3></figcaption>
+    </figure>
+   
+  </div>
+</section>
+
+</section>
+
+<!-- ---------- SCREEN RECORDING SECTION ---------- -->
+<section id="screen-recording">
+  <h3>🎥 Rendering of the final result.</h3>
+  <p>
+    The screen recording below showcases the step-by-step 3D modeling process of the 
+    Car Dashboard prototype in Blender — from the initial mesh setup and material 
+    adjustments to the final rendered composition.
+  </p>
+
+  <video controls autoplay muted loop class="recording-video">
+    <source src="media/waze_dashboard_modeling.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</section>
+</section>
+
+<!-- ---------- RESOURCES & REFERENCES SECTION ---------- -->
+<section id="resources">
+  <h3>Tutorials, 3D Models & Additional Resources</h3>
+  <p>
+    The following resources supported the modeling, rendering, and concept development of this project. 
+    They include tutorials, reference materials, and third-party 3D assets that guided the design process.
+  </p>
+
+  <ul class="resources-list">
+    <li>
+      <a href="https://www.youtube.com/watch?v=QaJU1RI-Uf0&t=148s" target="_blank">
+        Blender Tutorial – Blender Advanced Car Interior Modeling Master Class
+      </a>
+    </li>
+    <li>
+      <a href="https://www.youtube.com/watch?v=bv2NqDe-EKM&t=13s" target="_blank">
+        3D Car Modeling – How to Get Started
+    </li>
+    <li>
+      <a href="https://www.turbosquid.com/" target="_blank">
+        Turbosquid – 3D Models for Reference and Integration
+      </a>
+    </li>
+    <li>
+      <a href="https://sketchfab.com/" target="_blank">
+        Sketchfab – 3D Models for Reference and Integration
+      </a>
+    </li>
+    <li>
+      <a href="https://docs.blender.org/manual/en/latest/" target="_blank">
+        Blender Documentation – Lighting, Rendering, and Material Guidelines
+      </a>
+    </li>
+  </ul>
+</section>
+
+
   </main>
 
   <footer>
-    <p>© 2025 Toba Oni | Building a product interface in Blender</p>
+    <p>© 2025 Toba Oni | Finished Blender Prototypes</p>
   </footer>
-
+<!-- ---------- LIGHTBOX CONTAINER ---------- -->
+<div id="lightbox">
+  <span class="close-btn">&times;</span>
+  <img src="" alt="Expanded view">
+</div>
   <script src="script.js"></script>
 </body>
 </html>
+

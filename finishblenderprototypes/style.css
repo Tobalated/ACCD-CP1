@@ -13,7 +13,7 @@ body {
 
 /* ---------- HEADER ---------- */
 header {
-  background: #0d1117;
+  background: #04265a;
   color: white;
   text-align: center;
   padding: 2rem 1rem;
@@ -105,4 +105,148 @@ footer {
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
+}
+
+/* ---------- IMAGE GALLERY SECTION ---------- */
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.image-gallery img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.image-gallery figcaption {
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  color: #555;
+}
+
+/* --- Section Title Style (for mini subheadings) --- */
+.section-title {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #111;
+  position: relative;
+  margin-top: 2rem;
+  margin-bottom: 0.8rem;
+}
+
+.section-title::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 4px;
+  width: 4px;
+  height: 80%;
+  background-color: #00e0b6; /* turquoise accent */
+  border-radius: 2px;
+}
+
+/* --- Image Hover Zoom Effect (Enhanced Growth) --- */
+.image-gallery figure {
+  overflow: hidden;
+  border-radius: 12px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-gallery img {
+  transition: transform 0.5s ease-in-out, box-shadow 0.4s ease-in-out, filter 0.4s ease-in-out;
+  cursor: pointer;
+}
+
+.image-gallery img:hover {
+  transform: scale(1.2); /* Increased size from 1.08 to 1.2 */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.1);
+}
+/* --- Lightbox Close Button --- */
+.close-btn {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 2.5rem;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  z-index: 1100;
+}
+
+.close-btn:hover {
+  color: #00ffc8;
+}
+/* ---------- LIGHTBOX ---------- */
+#lightbox {
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  z-index: 1000;
+}
+
+#lightbox.active {
+  display: flex;
+}
+
+#lightbox img {
+  max-width: 85%;
+  max-height: 85%;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+  animation: fadeIn 0.4s ease;
+}
+
+.close-btn {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  font-size: 2.5rem;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  z-index: 1100;
+}
+
+.close-btn:hover {
+  color: #00ffc8;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+/* ---------- SCREEN RECORDING VIDEO ---------- */
+.recording-video {
+  width: 100%;
+  border-radius: 12px;
+  margin-top: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s ease-in-out;
+}
+
+.recording-video:hover {
+  transform: scale(1.03);
+}
+/* ---------- UNIFIED SUBHEADING STYLE ---------- */
+.subheading {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #04265a; /* unified color for all subheadings */
+  border-left: 4px solid #04265a;
+  padding-left: 10px;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  position: relative;
+  letter-spacing: 0.5px;
 }

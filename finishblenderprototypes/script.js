@@ -1,35 +1,30 @@
-// Smooth scrolling between sections
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
-    });
+// ---------- LIGHTBOX FUNCTIONALITY ----------
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = lightbox.querySelector("img");
+const closeBtn = document.querySelector(".close-btn");
+
+// Open lightbox when image is clicked
+document.querySelectorAll(".image-gallery img").forEach(image => {
+  image.addEventListener("click", () => {
+    lightbox.classList.add("active");
+    lightboxImg.src = image.src;
   });
 });
 
-// Lightbox image viewer
-const images = document.querySelectorAll('.clickable');
-const lightbox = document.createElement('div');
-lightbox.id = 'lightbox';
-document.body.appendChild(lightbox);
-
-images.forEach(image => {
-  image.addEventListener('click', e => {
-    lightbox.classList.add('active');
-    const img = document.createElement('img');
-    img.src = image.src;
-    while (lightbox.firstChild) lightbox.removeChild(lightbox.firstChild);
-    lightbox.appendChild(img);
-  });
+// Close when clicking outside the image or on close button
+lightbox.addEventListener("click", (e) => {
+  if (e.target !== lightboxImg) {
+    lightbox.classList.remove("active");
+  }
 });
 
-lightbox.addEventListener('click', e => {
-  if (e.target !== e.currentTarget) return;
-  lightbox.classList.remove('active');
+closeBtn.addEventListener("click", () => {
+  lightbox.classList.remove("active");
 });
 
-// Close lightbox with ESC key
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') lightbox.classList.remove('active');
+// Close on pressing ESC
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && lightbox.classList.contains("active")) {
+    lightbox.classList.remove("active");
+  }
 });
