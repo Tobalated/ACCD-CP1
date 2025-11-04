@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reading Notes – Programming Design Systems & What Do Prototypes Prototype?</title>
+  <meta name="description" content="Selected quotes and reflections from 'Programming Design Systems – Introduction' and 'What Do Prototypes Prototype?' by Houde & Hill." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#0f1115;
+      --panel:#151823;
+      --panel-2:#1b2030;
+      --text:#e6e8ef;
+      --muted:#9aa3b2;
+      --accent:#79ffe1;
+      --accent-2:#7aa2ff;
+      --ring: rgba(121,255,225,.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0; background: radial-gradient(1200px 800px at 10% -10%, #1b2030 0%, #0f1115 55%) fixed, var(--bg); color:var(--text); font: 16px/1.6 Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";}
+
+    header{
+      position:relative;
+      padding: clamp(32px, 6vw, 72px) 24px 12px;
+      text-align:center;
+    }
+    .badge{display:inline-block; padding:.35rem .7rem; border:1px solid #2a3145; border-radius:999px; color:var(--muted); background:rgba(255,255,255,.02); backdrop-filter:saturate(140%) blur(6px)}
+    h1{
+      font: 600 clamp(28px,4.6vw,46px)/1.15 "Playfair Display", serif;
+      letter-spacing:.2px; margin: 12px 0 6px;
+      background: linear-gradient(90deg, var(--text), var(--accent-2));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    .sub{color:var(--muted); max-width: 70ch; margin: 0 auto;}
+    nav{margin-top:16px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+    nav a{
+      text-decoration:none; color:var(--text); border:1px solid #2a3145;
+      padding:.55rem .85rem; border-radius:12px; background: #121622;
+    }
+    nav a:hover{outline:2px solid var(--ring); background:#151b2c}
+
+    main{max-width: 980px; margin: 28px auto 80px; padding: 0 20px;}
+    section{margin-top: 42px;}
+    h2{
+      font: 800 22px/1.2 Inter, system-ui;
+      display:flex; align-items:center; gap:10px;
+      margin: 0 0 16px;
+    }
+    h2 .dot{width:10px; height:10px; border-radius:999px; background:var(--accent)}
+    .src{font-size:.9rem; color:var(--muted)}
+    .src a{color:var(--accent)}
+
+    .grid{
+      display:grid; gap:16px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .card{
+      background: linear-gradient(180deg, var(--panel), var(--panel-2));
+      border: 1px solid #242a3b; border-radius: var(--radius);
+      padding: 18px; box-shadow: 0 10px 24px rgba(0,0,0,.35);
+    }
+    blockquote{
+      margin:0 0 12px; padding-left:14px; border-left:3px solid var(--accent);
+      color:#f0f3ff; font-style:italic;
+    }
+    .cite{display:block; color:var(--muted); font-size:.9rem; margin-top:6px}
+    .resp{color:#d7dcee}
+    .tag{display:inline-block; margin-top:10px; font-size:.8rem; color:var(--muted); background:#0f1422; padding:.25rem .5rem; border:1px solid #28314b; border-radius:10px}
+
+    footer{
+      margin: 64px auto 0; max-width:980px; padding: 0 20px 56px; color:var(--muted);
+    }
+    footer a{color:var(--accent)}
+
+    /* small helper */
+    .sr-only{position:absolute!important; height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+  </style>
+</head>
+<body>
+  <header>
+    <span class="badge">Reading Notes · Nov 3, 2025</span>
+    <h1>Programming Design Systems &amp; What Do Prototypes Prototype?</h1>
+    <p class="sub"> Six favorite quotes (three from each reading) </p>
+        Assignment submission for GIXD-503A-01.25FA Creative Prototyping 1.</p>
+    <nav>
+      <a href="#pds">Programming Design Systems – Introduction</a>
+      <a href="#wdpp">What Do Prototypes Prototype? (Houde &amp; Hill)</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 1) Programming Design Systems -->
+    <section id="pds" aria-labelledby="pds-title">
+      <h2 id="pds-title"><span class="dot" aria-hidden="true"></span>Programming Design Systems – “Introduction”</h2>
+      <p class="src">Source: <a href="https://programmingdesignsystems.com/introduction/" target="_blank" rel="noopener">programmingdesignsystems.com/introduction</a></p>
+
+      <div class="grid">
+        <!-- Quote 1 -->
+        <article class="card">
+          <blockquote>
+            “We are now in transition from an object-oriented to a systems-oriented culture. Here change emanates, not from things, but from the way things are done.”
+          </blockquote>
+          <span class="cite">— Jack Burnham, <em>Systems Esthetics</em> (1968)</span>
+          <p class="resp">
+            A perfect frame for contemporary design: outcomes emerge from relationships and rules, not isolated artifacts. For UI/brand work, this moves us from polishing screens to shaping behaviors, flows, and lifecycle states across contexts.
+          </p>
+          <span class="tag">Systems thinking</span>
+        </article>
+
+        <!-- Quote 2 -->
+        <article class="card">
+          <blockquote>
+            “Even in web design … it seems limiting to define the design to just the styles of the page.”
+          </blockquote>
+          <span class="cite">— Rune Madsen, <em>Introduction</em></span>
+          <p class="resp">
+            Style isn’t the product; experience is. This nudges designers to validate tasks, feedback loops, and performance under real constraints—then let visual polish serve those systemic goals.
+          </p>
+          <span class="tag">Beyond visuals</span>
+        </article>
+
+        <!-- Quote 3 -->
+        <article class="card">
+          <blockquote>
+            “Systems can cure the fear of the blank canvas.”
+          </blockquote>
+          <span class="cite">— Rune Madsen, <em>Introduction</em></span>
+          <p class="resp">
+            Constraints liberate. Thoughtful design systems (tokens, grids, motion rules) accelerate exploration and keep work coherent as it scales to multiple screens and states.
+          </p>
+          <span class="tag">Creative constraints</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- 2) What Do Prototypes Prototype? -->
+    <section id="wdpp" aria-labelledby="wdpp-title">
+      <h2 id="wdpp-title"><span class="dot" aria-hidden="true"></span>What Do Prototypes Prototype? — Houde &amp; Hill</h2>
+      <p class="src">Source (PDF): <a href="https://hci.stanford.edu/courses/cs247/2012/readings/WhatDoPrototypesPrototype.pdf" target="_blank" rel="noopener">hci.stanford.edu/.../WhatDoPrototypesPrototype.pdf</a></p>
+
+      <div class="grid">
+        <!-- Quote 1 -->
+        <article class="card">
+          <blockquote>
+            “Choosing the right kind of focused prototype is an art in itself.”
+          </blockquote>
+          <span class="cite">— Houde &amp; Hill</span>
+          <p class="resp">
+            Prototyping starts with a question, not a tool. When we articulate what we need to learn (role, look-and-feel, or implementation), we save time and get sharper feedback.
+          </p>
+          <span class="tag">Prototype intent</span>
+        </article>
+
+        <!-- Quote 2 -->
+        <article class="card">
+          <blockquote>
+            “By focusing on the purpose of the prototype … we can make better decisions about the kinds of prototypes to build.”
+          </blockquote>
+          <span class="cite">— Houde &amp; Hill</span>
+          <p class="resp">
+            Purpose acts like a north star: if we’re testing comprehension, a clickable storyboard may beat a coded demo. If we’re testing feasibility, a technical spike wins.
+          </p>
+          <span class="tag">Decision making</span>
+        </article>
+
+        <!-- Quote 3 -->
+        <article class="card">
+          <blockquote>
+            “Prototypes are not self-explanatory: looks can be deceiving.”
+          </blockquote>
+          <span class="cite">— Houde &amp; Hill</span>
+          <p class="resp">
+            Stakeholders often equate polish with readiness. Labeling scope and known-unknowns (“visual only,” “performance TBD,” “fake data”) prevents false confidence and misaligned expectations.
+          </p>
+          <span class="tag">Expectation setting</span>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+   
+    <p>Author: <span aria-label="Your name here">Toba Oni</span> · Last updated: Nov 3, 2025</p>
+  </footer>
+</body>
+</html>
