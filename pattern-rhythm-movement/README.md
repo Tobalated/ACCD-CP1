@@ -6,7 +6,7 @@ The final visual is a dynamic grid where each tile reacts to time, noise, and sp
 
 ---
 
-## 🎨 Project Overview  
+## Project Overview  
 The goal was to:
 
 - Create a visual pattern that fills the entire window  
@@ -22,7 +22,7 @@ This sketch uses a grid of oscillating rounded rectangles, each animated by nois
 
 ---
 
-## 🧠 Process: Problems & Solutions
+##  Process: Problems & Solutions
 
 ### **1. Getting the grid to feel rhythmic, not random**  
 **Problem:**  
@@ -79,13 +79,6 @@ The breakthrough came when I combined **noise()** with a few carefully tuned sin
 
 ---
 
-## ▶️ Running the Sketch
-
-Open `index.html` in a browser  
-or  
-view the live hosted version:
-
-👉 *(insert your GitHub Pages link here)*
 
 ---
 
