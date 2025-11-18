@@ -71,7 +71,7 @@ This sends ripples across the entire window so no part feels static.
 
 ---
 
-## ✨ Reflection: Most Interesting Problem (2 Paragraphs)
+## Reflection: Most Interesting Problem (2 Paragraphs)
 
 One of the most interesting challenges was designing motion that felt complex and non-linear without becoming chaotic. At first, I used `random()` to drive the variation in movement. This technically introduced change, but the visual outcome was jittery and uncomfortable. Tiles snapped unpredictably each frame, and the piece lacked rhythm. When I tried stacking multiple sine waves to fix that, the motion became too busy—everything oscillated in different, conflicting directions, and the pattern lost coherence.
 
