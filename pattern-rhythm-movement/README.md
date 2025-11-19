@@ -6,7 +6,7 @@ The final visual is a dynamic grid where each tile reacts to time, noise, and sp
 
 ---
 
-## 🎨 Project Overview  
+## Project Overview  
 The goal was to:
 
 - Create a visual pattern that fills the entire window  
@@ -22,7 +22,7 @@ This sketch uses a grid of oscillating rounded rectangles, each animated by nois
 
 ---
 
-## 🧠 Process: Problems & Solutions
+## Process: Problems & Solutions
 
 ### **1. Getting the grid to feel rhythmic, not random**  
 **Problem:**  
@@ -71,7 +71,7 @@ This sends ripples across the entire window so no part feels static.
 
 ---
 
-## ✨ Reflection: Most Interesting Problem (2 Paragraphs)
+##  Reflection: Most Interesting Problem (2 Paragraphs)
 
 One of the most interesting challenges was designing motion that felt complex and non-linear without becoming chaotic. At first, I used `random()` to drive the variation in movement. This technically introduced change, but the visual outcome was jittery and uncomfortable. Tiles snapped unpredictably each frame, and the piece lacked rhythm. When I tried stacking multiple sine waves to fix that, the motion became too busy—everything oscillated in different, conflicting directions, and the pattern lost coherence.
 
@@ -79,13 +79,13 @@ The breakthrough came when I combined **noise()** with a few carefully tuned sin
 
 ---
 
-## ▶️ Running the Sketch
+##  Running the Sketch
 
 Open `index.html` in a browser  
 or  
 view the live hosted version:
 
-👉 *(insert your GitHub Pages link here)*
+(https://tobalated.github.io/ACCD-CP1/pattern-rhythm-movement/)*
 
 ---
 
