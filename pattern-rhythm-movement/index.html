@@ -4,8 +4,176 @@
   <meta charset="UTF-8" />
   <title>Pattern, Rhythm & Movement</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.0/p5.min.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #000;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    /* Floating button to open docs */
+    #doc-toggle {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      padding: 8px 14px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      border-radius: 999px;
+      font-size: 14px;
+      cursor: pointer;
+      z-index: 1000;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(6px);
+    }
+
+    #doc-toggle:hover {
+      background: rgba(0, 0, 0, 0.9);
+    }
+
+    /* Fullscreen overlay panel */
+    #doc-panel {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;              /* hidden by default */
+      z-index: 1100;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #doc-panel.open {
+      display: flex;              /* show when open */
+    }
+
+    /* Card in the middle */
+    #doc-card {
+      max-width: 720px;
+      max-height: 80vh;
+      background: #101013;
+      color: #f5f5f5;
+      padding: 20px 24px;
+      border-radius: 16px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+      overflow-y: auto;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    #doc-card h1 {
+      font-size: 20px;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    #doc-card h2 {
+      font-size: 16px;
+      margin-top: 16px;
+      margin-bottom: 6px;
+    }
+
+    #doc-close {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      font-size: 22px;
+      cursor: pointer;
+      color: #aaa;
+    }
+
+    #doc-close:hover {
+      color: #fff;
+    }
+
+    #doc-card p {
+      font-size: 14px;
+      line-height: 1.5;
+      margin-top: 4px;
+      margin-bottom: 8px;
+    }
+
+    #doc-card ul {
+      padding-left: 18px;
+      margin-top: 4px;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+  </style>
 </head>
-<body style="margin:0; padding:0; background:#000;">
+
+<body>
+  <!-- p5 sketch -->
   <script src="sketch.js"></script>
+
+  <!-- Floating button -->
+  <div id="doc-toggle">Documentation</div>
+
+  <!-- Overlay panel -->
+  <div id="doc-panel">
+    <div id="doc-card">
+      <div id="doc-close">&times;</div>
+
+      <h1>Pattern, Rhythm &amp; Movement — Documentation</h1>
+      <p>
+        This sketch explores tiling, rhythm, HSB color, and complex non-linear motion
+        using p5.js. The grid of rectangles animates using a combination of
+        polar coordinates, Perlin noise, and layered sine waves.
+      </p>
+
+      <h2>Process: Problems &amp; Solutions</h2>
+      <ul>
+        <li><b>Rhythmic structure:</b> I used a grid plus radial coordinates
+          (<code>distCenter</code>, <code>angle</code>) to keep the pattern unified.</li>
+        <li><b>Symmetry vs. variation:</b> Symmetry comes from the math;
+          variation comes from noise and time-based modulation.</li>
+        <li><b>Non-linear movement:</b> I combined <code>noise()</code> with
+          multiple <code>sin()/cos()</code> layers for smooth, curved motion.</li>
+        <li><b>Color control:</b> Hue is tied to angle and time; saturation and
+          brightness depend on distance and a wave function.</li>
+      </ul>
+
+      <h2>Reflection</h2>
+      <p>
+        One of the biggest challenges was making the motion feel complex and
+        non-linear without looking chaotic or jittery. Early versions that used
+        <code>random()</code> each frame produced uncomfortable, noisy movement.
+      </p>
+      <p>
+        The solution was to rely on <code>noise()</code> for smooth variation,
+        and to tie all motion back to a shared time variable and polar
+        coordinates. This keeps the grid “breathing” together while each tile
+        still follows its own slightly different path.
+      </p>
+
+      <h2>Notes</h2>
+      <p>
+        For more detailed documentation, see the README on the GitHub repo.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Simple open/close behavior for the documentation panel
+    const docToggle = document.getElementById('doc-toggle');
+    const docPanel  = document.getElementById('doc-panel');
+    const docClose  = document.getElementById('doc-close');
+
+    docToggle.addEventListener('click', () => {
+      docPanel.classList.add('open');
+    });
+
+    docClose.addEventListener('click', () => {
+      docPanel.classList.remove('open');
+    });
+
+    // Close when clicking outside the card
+    docPanel.addEventListener('click', (e) => {
+      if (e.target === docPanel) {
+        docPanel.classList.remove('open');
+      }
+    });
+  </script>
 </body>
 </html>
