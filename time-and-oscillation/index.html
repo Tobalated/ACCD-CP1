@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Complex Motion Rhythm – Process Documentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* --- BASIC LAYOUT --- */
+    body {
+      margin: 0;
+      padding: 1.5rem;
+      max-width: 960px;
+      margin-inline: auto;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #050714;
+      color: #f5f5f7;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      color: #fefefe;
+      letter-spacing: 0.03em;
+    }
+
+    a {
+      color: #9fd1ff;
+    }
+
+    header {
+      margin-bottom: 2rem;
+    }
+
+    header p {
+      max-width: 46rem;
+    }
+
+    /* --- SKETCH SECTION --- */
+    #sketch-section {
+      margin: 2rem 0;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      background: radial-gradient(circle at top left, #222746, #050714);
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.5);
+    }
+
+    #sketch-holder {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* --- GALLERY --- */
+    #iterations {
+      margin-top: 3rem;
+    }
+
+    .iteration-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    figure.iteration {
+      background: #101325;
+      border-radius: 12px;
+      padding: 0.75rem;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    figure.iteration img {
+      width: 100%;
+      border-radius: 8px;
+      display: block;
+      margin-bottom: 0.5rem;
+      object-fit: cover;
+    }
+
+    figure.iteration figcaption h3 {
+      margin: 0 0 0.25rem;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #c2e1ff;
+    }
+
+    figure.iteration figcaption p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #d3d6f2;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      margin-top: 3rem;
+      font-size: 0.85rem;
+      color: #9ca2c7;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Complex Motion Rhythm – Animation Process</h1>
+    <p>
+      This page documents the evolution of a p5.js animation exploring complex motion rhythms:
+      one shape moves in continuous trigonometric motion, while another reacts after a timed
+      interval. Randomness and Perlin noise are used to create more organic forms and rhythms.
+    </p>
+  </header>
+
+  <!-- LIVE SKETCH EMBED -->
+  <section id="sketch-section">
+    <h2>Live Sketch (p5.js)</h2>
+    <p>
+      Below is the final sketch embedded with p5.js. One body orbits like a planet using
+      trigonometric functions, a second body starts moving after a timed delay, and a noisy
+      organic blob flows in the corner.
+    </p>
+    <div id="sketch-holder"></div>
+  </section>
+
+  <!-- ITERATION GALLERY -->
+  <section id="iterations">
+    <h2>Process Iterations</h2>
+    <p>
+      These images capture key stages of the work in progress. Each iteration builds on the previous one,
+      gradually introducing trigonometric motion, timed events, and organic Perlin noise shapes.
+    </p>
+
+    <div class="iteration-grid">
+      <!-- Replace image src paths with your actual screenshots -->
+      <figure class="iteration">
+        <img src="images/iteration1.png" alt="Iteration 1 – Static composition" />
+        <figcaption>
+          <h3>Iteration 1 – Static layout</h3>
+          <p>
+            I started with a simple static composition: a central “sun”, a secondary rectangle on the right,
+            and placeholder space for an organic shape. This helped set the main visual balance and color palette.
+          </p>
+        </figcaption>
+      </figure>
+
+      <figure class="iteration">
+        <img src="images/iteration2.png" alt="Iteration 2 – Planet orbit with trig" />
+        <figcaption>
+          <h3>Iteration 2 – Orbital motion</h3>
+          <p>
+            Next, I used sine and cosine functions to move the “planet” around the sun in a circular orbit.
+            At this point the motion was very regular, almost like a clock ticking.
+          </p>
+        </figcaption>
+      </figure>
+
+      <figure class="iteration">
+        <img src="images/iteration3.png" alt="Iteration 3 – Delayed rectangle motion" />
+        <figcaption>
+          <h3>Iteration 3 – Timed second motion</h3>
+          <p>
+            I introduced the second moving shape: a rectangle that remains mostly idle at first.
+            Using <code>millis()</code> and a delay, it only begins its full motion after a few seconds.
+          </p>
+        </figcaption>
+      </figure>
+
+      <figure class="iteration">
+        <img src="images/iteration4.png" alt="Iteration 4 – Desynchronized rhythms" />
+        <figcaption>
+          <h3>Iteration 4 – Desynchronizing periods</h3>
+          <p>
+            I gave the planet and rectangle different frequencies and phase offsets, so their cycles rarely
+            align. This creates a more complex, musical rhythm instead of a simple repeating pattern.
+          </p>
+        </figcaption>
+      </figure>
+
+      <figure class="iteration">
+        <img src="images/iteration5.png" alt="Iteration 5 – Perlin noise blob" />
+        <figcaption>
+          <h3>Iteration 5 – Perlin noise blob</h3>
+          <p>
+            I added a Perlin noise–driven blob on the left. The radius of each vertex is modulated by noise,
+            producing an organic, constantly morphing shape that contrasts with the more geometric motions.
+          </p>
+        </figcaption>
+      </figure>
+
+      <figure class="iteration">
+        <img src="images/iteration6.png" alt="Iteration 6 – Final polish" />
+        <figcaption>
+          <h3>Iteration 6 – Final scene & polish</h3>
+          <p>
+            Finally, I refined the atmosphere with a drifting starfield and tuned the color choices, speeds,
+            and amplitudes. The result is a layered animation where static, timed, and noisy motions
+            interact to form a richer visual rhythm.
+          </p>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <footer>
+    <p>
+      Note: To reproduce this documentation, capture at least six screenshots of your sketch at different
+      stages and swap them into the <code>images/iterationX.png</code> placeholders above.
+    </p>
+  </footer>
+
+  <!-- p5.js + sketch -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>
