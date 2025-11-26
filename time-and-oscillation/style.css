@@ -1,0 +1,202 @@
+:root {
+  --bg-dark: #050816;
+  --card-bg: #0f1325;
+  --accent: #c2e1ff;
+  --text-main: #f5f5f7;
+  --tree-green: #0B6B32;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 1.5rem;
+  max-width: 960px;
+  margin-inline: auto;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: transparent; /* snow canvas sits behind */
+  color: var(--text-main);
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+
+h1, h2, h3 {
+  color: #ffffff;
+  letter-spacing: 0.03em;
+}
+
+a {
+  color: #9fd1ff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ========= SNOW BACKGROUND CANVAS ========= */
+#snow-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--bg-dark);
+}
+
+/* ========= RED NAVBAR ========= */
+.main-nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #c82333; /* Christmas Red */
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+}
+
+.nav-brand {
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+}
+
+/* ========= NAV LINK BUTTONS ========= */
+/* Default: soft translucent pill */
+.nav-links a {
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15); /* NOT green by default */
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: 0.25s ease;
+}
+
+/* Hover: Christmas-tree green + glow */
+.nav-links a:hover {
+  background: var(--tree-green);          /* Tree green */
+  color: #0B6B32;
+  text-decoration: none;
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow:
+    0 0 12px rgba(11, 107, 50, 0.9),
+    0 0 22px rgba(11, 107, 50, 0.7);      /* Green glow */
+  transform: translateY(-2px);
+}
+
+/* ========= SKETCH SECTION ========= */
+#sketch-section {
+  margin: 2rem 0;
+  padding: 1rem 1.5rem;
+  border-radius: 14px;
+  background: radial-gradient(circle at top left, #203050, #050816);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.6);
+}
+
+/* CENTERED EMBED SKETCH */
+.sketch-frame-wrapper {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sketch-frame-wrapper iframe {
+  display: block;
+  max-width: 100%;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7);
+}
+
+/* ========= ITERATIONS ========= */
+#iterations {
+  margin-top: 3rem;
+}
+
+/* LARGE FULL-WIDTH ITERATION IMAGES */
+.iteration-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+figure.iteration {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  position: relative;
+}
+
+figure.iteration img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 0.75rem;
+  border-radius: 12px;
+  transition: transform 0.4s ease, box-shadow 0.35s ease;
+  transform-origin: center center;
+  cursor: zoom-in;
+}
+
+/* Hover open/zoom effect */
+figure.iteration:hover img {
+  transform: scale(1.06);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.65);
+}
+
+figure.iteration figcaption h3 {
+  margin: 0 0 0.25rem;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+figure.iteration figcaption p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #d3d6f2;
+}
+
+/* ========= FOOTER ========= */
+footer {
+  margin-top: 3rem;
+  font-size: 0.85rem;
+  color: #9ca2c7;
+}
+
+/* ========= RESPONSIVE ========= */
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+  }
+
+  .main-nav {
+    border-radius: 12px;
+  }
+
+  .nav-brand {
+    font-size: 0.75rem;
+  }
+}

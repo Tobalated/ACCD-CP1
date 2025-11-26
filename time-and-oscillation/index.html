@@ -2,78 +2,164 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Complex Motion Rhythm – Process Documentation</title>
+  <title>Christmas Tree Motion Rhythm – p5.js Project</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    /* --- BASIC LAYOUT --- */
+    :root {
+      --bg-dark: #050816;
+      --card-bg: #0f1325;
+      --accent: #c2e1ff;
+      --text-main: #f5f5f7;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       padding: 1.5rem;
       max-width: 960px;
       margin-inline: auto;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #050714;
-      color: #f5f5f7;
+      background: transparent; /* snow canvas sits behind */
+      color: var(--text-main);
       line-height: 1.6;
+      position: relative;
+      z-index: 1;
     }
 
     h1, h2, h3 {
-      color: #fefefe;
+      color: #ffffff;
       letter-spacing: 0.03em;
     }
 
     a {
       color: #9fd1ff;
+      text-decoration: none;
     }
 
-    header {
-      margin-bottom: 2rem;
+    a:hover {
+      text-decoration: underline;
     }
 
-    header p {
-      max-width: 46rem;
+    /* ============ SNOW CANVAS BACKGROUND ============ */
+    #snow-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      background: var(--bg-dark);
     }
 
-    /* --- SKETCH SECTION --- */
+    /* ============ RED NAVBAR ============ */
+    .main-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: #c82333; /* Christmas Red */
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+    }
+
+    .nav-brand {
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: #ffffff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.15);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255,255,255,0.35);
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    /* ============ SKETCH SECTION ============ */
     #sketch-section {
       margin: 2rem 0;
       padding: 1rem 1.5rem;
-      border-radius: 12px;
-      background: radial-gradient(circle at top left, #222746, #050714);
-      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.5);
+      border-radius: 14px;
+      background: radial-gradient(circle at top left, #203050, #050816);
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.6);
     }
 
-    #sketch-holder {
+    /* CENTER THE EMBEDDED P5 SKETCH */
+    .sketch-frame-wrapper {
       margin-top: 1rem;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    /* --- GALLERY --- */
+    .sketch-frame-wrapper iframe {
+      display: block;
+      max-width: 100%;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7);
+    }
+
+    /* ============ ITERATIONS SECTION ============ */
     #iterations {
       margin-top: 3rem;
     }
 
+    /* FULL-WIDTH LARGE ITERATION IMAGES */
     .iteration-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-top: 1.5rem;
     }
 
     figure.iteration {
-      background: #101325;
-      border-radius: 12px;
-      padding: 0.75rem;
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 1rem;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55);
+      overflow: hidden;
+      position: relative;
     }
 
     figure.iteration img {
       width: 100%;
-      border-radius: 8px;
+      height: auto;
       display: block;
-      margin-bottom: 0.5rem;
-      object-fit: cover;
+      margin-bottom: 0.75rem;
+      border-radius: 12px;
+      transition: transform 0.4s ease, box-shadow 0.35s ease;
+      transform-origin: center center;
+      cursor: zoom-in;
+    }
+
+    figure.iteration:hover img {
+      transform: scale(1.06);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.65);
     }
 
     figure.iteration figcaption h3 {
@@ -81,7 +167,7 @@
       font-size: 0.95rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: #c2e1ff;
+      color: var(--accent);
     }
 
     figure.iteration figcaption p {
@@ -90,114 +176,186 @@
       color: #d3d6f2;
     }
 
-    /* --- FOOTER --- */
+    /* ============ FOOTER ============ */
     footer {
       margin-top: 3rem;
       font-size: 0.85rem;
       color: #9ca2c7;
     }
 
+    /* ============ RESPONSIVE ============ */
     @media (max-width: 600px) {
       body {
         padding: 1rem;
       }
+
+      .main-nav {
+        border-radius: 12px;
+      }
+
+      .nav-brand {
+        font-size: 0.75rem;
+      }
     }
   </style>
 </head>
-<body>
+<body id="top">
+  <!-- SNOW BACKGROUND CANVAS -->
+  <canvas id="snow-canvas"></canvas>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="main-nav">
+    <div class="nav-brand">Christmas Tree Motion</div>
+    <div class="nav-links">
+      <a href="#top">Home</a>
+      <a href="#story">Story</a>
+      <a href="#sketch-section">Sketch</a>
+      <a href="#iterations">Iterations</a>
+    </div>
+  </nav>
+
   <header>
-    <h1>Complex Motion Rhythm – Animation Process</h1>
+    <h1>Christmas Tree Motion Rhythm – p5.js Animation</h1>
     <p>
-      This page documents the evolution of a p5.js animation exploring complex motion rhythms:
-      one shape moves in continuous trigonometric motion, while another reacts after a timed
-      interval. Randomness and Perlin noise are used to create more organic forms and rhythms.
+      This project began with a simple moment at home: decorating my Christmas tree. As I unpacked ornaments,
+      lights, and branches, I noticed how everything moved — the way ornaments gently swung, the lights flickered,
+      and the branches bent. That observation became the foundation for this p5.js sketch, where a Christmas tree
+      comes to life through motion, timing, and noise.
     </p>
   </header>
 
-  <!-- LIVE SKETCH EMBED -->
-  <section id="sketch-section">
-    <h2>Live Sketch (p5.js)</h2>
+  <section id="story">
+    <h2>Project Story / Artist Statement</h2>
     <p>
-      Below is the final sketch embedded with p5.js. One body orbits like a planet using
-      trigonometric functions, a second body starts moving after a timed delay, and a noisy
-      organic blob flows in the corner.
+      Every year, as Christmas approaches, I pull out a familiar storage box from the locker in my home.
+      The one filled with ornaments, ribbons, lights, and the artificial pine tree I’ve used for several seasons.
+      It’s a small ritual, but it always sets the tone for the holiday spirit.
     </p>
-    <div id="sketch-holder"></div>
+    <p>
+      This year, while I was assembling the tree and placing the ornaments, I caught myself paying more attention
+      than usual to the motion around me. The ornaments swayed when I brushed past them, the lights seemed to flicker
+      with their own rhythm, and the branches shifted slightly under the weight of each new decoration. At the top of
+      the tree, the gold star felt like a small focal point for all of this energy, almost like it was spinning in my
+      imagination.
+    </p>
+    <p>
+      At one point, I paused to take a picture of myself decorating the tree. Later, looking at that photo,
+      it clicked: this could be the concept for my animation project. Instead of inventing an abstract idea,
+      I could translate this real moment into code, turning the Christmas tree into a system of moving parts:
+      a rotating star, rows of ornaments climbing up the branches, swinging motions, a timed falling ornament,
+      twinkling lights, and drifting snow.
+    </p>
+    <p>
+      That is how this <strong>Christmas Tree Motion Rhythm</strong> sketch was born. A blend of holiday tradition
+      and computational design, where everyday movements are transformed into a rhythmic, animated scene.
+    </p>
+  </section>
+
+  <!-- LIVE p5.js SKETCH VIA IFRAME -->
+  <section id="sketch-section">
+    <h2>Embedded p5.js Sketch</h2>
+    <p>
+      Below is the live p5.js sketch hosted on the p5.js Web Editor. Press the number keys
+      <strong>1–6</strong> to switch between the internal iteration states of the animation
+      (from simple tree to full scene). The final version features a rotating gold star,
+      ornaments placed along the edges and up toward the top of the tree, a delayed falling ornament, and
+      noise-driven lights and snow.
+    </p>
+
+    <div class="sketch-frame-wrapper">
+      <iframe
+        src="https://editor.p5js.org/Tobalated/full/-vFAs1LgM"
+        width="800"
+        height="500"
+        loading="lazy"
+        allowfullscreen
+      ></iframe>
+    </div>
   </section>
 
   <!-- ITERATION GALLERY -->
   <section id="iterations">
-    <h2>Process Iterations</h2>
+    <h2>Process Iterations (Image Documentation)</h2>
     <p>
-      These images capture key stages of the work in progress. Each iteration builds on the previous one,
-      gradually introducing trigonometric motion, timed events, and organic Perlin noise shapes.
+      The following six images document the evolution of the project, from the real-life inspiration to the final
+      animated composition. One image shows me decorating the actual tree at home, and the other five show different
+      development stages of the p5.js sketch, including the rotating star and the growing number of ornaments
+      along the tree.
     </p>
 
     <div class="iteration-grid">
-      <!-- Replace image src paths with your actual screenshots -->
       <figure class="iteration">
-        <img src="images/iteration1.png" alt="Iteration 1 – Static composition" />
+        <img src="images/iteration1_decorating_tree.jpg" alt="Iteration 1 – Decorating the real Christmas tree" />
         <figcaption>
-          <h3>Iteration 1 – Static layout</h3>
+          <h3>Iteration 1 – Real-Life Inspiration</h3>
           <p>
-            I started with a simple static composition: a central “sun”, a secondary rectangle on the right,
-            and placeholder space for an organic shape. This helped set the main visual balance and color palette.
+            This photo captures the moment the idea emerged. While decorating my Christmas tree at home,
+            I noticed how the ornaments, lights, and branches moved in subtle rhythms. That observation,
+            including the gold star at the top became the core concept for turning the tree into a motion-based
+            p5.js animation.
           </p>
         </figcaption>
       </figure>
 
       <figure class="iteration">
-        <img src="images/iteration2.png" alt="Iteration 2 – Planet orbit with trig" />
+        <img src="images/iteration2_basic_tree.png" alt="Iteration 2 – Basic tree structure in p5.js" />
         <figcaption>
-          <h3>Iteration 2 – Orbital motion</h3>
+          <h3>Iteration 2 – Tree Structure & Rotating Star</h3>
           <p>
-            Next, I used sine and cosine functions to move the “planet” around the sun in a circular orbit.
-            At this point the motion was very regular, almost like a clock ticking.
+            In the first digital sketch, I created the core structure of the Christmas tree using stacked triangles
+            and a rectangular trunk. I also added a gold star on top and gave it a gentle continuous rotation,
+            establishing the first repeated motion driven by time.
           </p>
         </figcaption>
       </figure>
 
       <figure class="iteration">
-        <img src="images/iteration3.png" alt="Iteration 3 – Delayed rectangle motion" />
+        <img src="images/iteration3_static_ornaments.png" alt="Iteration 3 – Adding static ornaments" />
         <figcaption>
-          <h3>Iteration 3 – Timed second motion</h3>
+          <h3>Iteration 3 – More Ornaments Along the Tree</h3>
           <p>
-            I introduced the second moving shape: a rectangle that remains mostly idle at first.
-            Using <code>millis()</code> and a delay, it only begins its full motion after a few seconds.
+            Next, I introduced static ornaments and began placing them not only in the center, but also along the
+            edges and higher up the tree, just below the spinning star. This stage focused on composition, deciding
+            how many ornaments to use and how they should climb up the branches visually.
           </p>
         </figcaption>
       </figure>
 
       <figure class="iteration">
-        <img src="images/iteration4.png" alt="Iteration 4 – Desynchronized rhythms" />
+        <img src="images/iteration4_swinging_ornaments.png" alt="Iteration 4 – Swinging ornaments with trig motion" />
         <figcaption>
-          <h3>Iteration 4 – Desynchronizing periods</h3>
+          <h3>Iteration 4 – Edge Ornaments with Trigonometric Motion</h3>
           <p>
-            I gave the planet and rectangle different frequencies and phase offsets, so their cycles rarely
-            align. This creates a more complex, musical rhythm instead of a simple repeating pattern.
+            I then applied sinusoidal motion to the ornaments, including those on the edges and higher areas of the
+            tree. Each ornament received its own amplitude, frequency, and phase, so they swing in slightly different
+            rhythms. This creates a layered, desynchronized motion that feels closer to real ornaments responding to
+            subtle movement in the room.
           </p>
         </figcaption>
       </figure>
 
       <figure class="iteration">
-        <img src="images/iteration5.png" alt="Iteration 5 – Perlin noise blob" />
+        <img src="images/iteration5_timed_drop.png" alt="Iteration 5 – Timed falling ornament using millis" />
         <figcaption>
-          <h3>Iteration 5 – Perlin noise blob</h3>
+          <h3>Iteration 5 – Timed Falling Ornament</h3>
           <p>
-            I added a Perlin noise–driven blob on the left. The radius of each vertex is modulated by noise,
-            producing an organic, constantly morphing shape that contrasts with the more geometric motions.
+            To introduce interval-based behavior, I used <code>millis()</code> to trigger a delayed event:
+            after a few seconds, one of the lower ornaments detaches from the tree and falls, bouncing gently
+            before settling. This motion is intentionally out of sync with the swinging ornaments, adding a
+            surprising and playful moment to the animation.
           </p>
         </figcaption>
       </figure>
 
       <figure class="iteration">
-        <img src="images/iteration6.png" alt="Iteration 6 – Final polish" />
+        <img src="images/iteration6_final_scene.png" alt="Iteration 6 – Final scene with lights and snow" />
         <figcaption>
-          <h3>Iteration 6 – Final scene & polish</h3>
+          <h3>Iteration 6 – Final Scene: Lights, Snow & Complex Rhythm</h3>
           <p>
-            Finally, I refined the atmosphere with a drifting starfield and tuned the color choices, speeds,
-            and amplitudes. The result is a layered animation where static, timed, and noisy motions
-            interact to form a richer visual rhythm.
+            In the final version, I completed the scene with Perlin noise–driven Christmas lights and snowfall.
+            The lights flicker organically along the tree, and snowflakes drift down with a slight noise-based wobble.
+            Combined with the rotating star, swinging edge ornaments, and timed falling ornament, the full sketch
+            creates a rich, layered motion rhythm inspired by a real Christmas decoration ritual.
           </p>
         </figcaption>
       </figure>
@@ -206,13 +364,73 @@
 
   <footer>
     <p>
-      Note: To reproduce this documentation, capture at least six screenshots of your sketch at different
-      stages and swap them into the <code>images/iterationX.png</code> placeholders above.
+      This project connects a personal holiday ritual with motion design in code. By translating the physical
+      behavior of a Christmas tree into p5.js — from a spinning star to ornaments that swing, fall, and glow —
+      I explored how everyday experiences can become playful, algorithmic animations.
     </p>
   </footer>
 
-  <!-- p5.js + sketch -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
-  <script src="sketch.js"></script>
+  <!-- SNOW ANIMATION SCRIPT -->
+  <script>
+    const canvas = document.getElementById('snow-canvas');
+    const ctx = canvas.getContext('2d');
+    let flakes = [];
+
+    function resizeSnowCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeSnowCanvas);
+    resizeSnowCanvas();
+
+    function initSnow() {
+      flakes = [];
+      const count = 120;
+      for (let i = 0; i < count; i++) {
+        flakes.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 2.5 + 1,
+          speedY: Math.random() * 1.5 + 0.5,
+          drift: Math.random() * 0.8 - 0.4
+        });
+      }
+    }
+
+    function drawSnow() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+      ctx.beginPath();
+      for (let flake of flakes) {
+        ctx.moveTo(flake.x, flake.y);
+        ctx.arc(flake.x, flake.y, flake.r, 0, Math.PI * 2);
+      }
+      ctx.fill();
+    }
+
+    function updateSnow() {
+      for (let flake of flakes) {
+        flake.y += flake.speedY;
+        flake.x += flake.drift;
+
+        if (flake.y > canvas.height) {
+          flake.y = -10;
+          flake.x = Math.random() * canvas.width;
+        }
+        if (flake.x > canvas.width) flake.x = 0;
+        if (flake.x < 0) flake.x = canvas.width;
+      }
+    }
+
+    function snowLoop() {
+      updateSnow();
+      drawSnow();
+      requestAnimationFrame(snowLoop);
+    }
+
+    initSnow();
+    snowLoop();
+  </script>
 </body>
 </html>
