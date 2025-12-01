@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aquatic Food Chain – p5.js System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg-dark: #050816;
+      --card-bg: #0f1325;
+      --accent: #c2e1ff;
+      --text-main: #f5f5f7;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 1.5rem;
+      max-width: 960px;
+      margin-inline: auto;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #141a34 0%, #050816 55%, #02030a 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+      color: #ffffff;
+      letter-spacing: 0.04em;
+    }
+
+    p {
+      margin-bottom: 0.75rem;
+    }
+
+    a {
+      color: #9fd1ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(5, 8, 22, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 0.7rem 1.2rem;
+      margin: -1.5rem -1.5rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-brand {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      color: #ffffff;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+    }
+
+    .nav-links a {
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: #e0e7ff;
+      text-decoration: none;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      border-color: rgba(226, 232, 255, 0.65);
+      background: rgba(148, 163, 255, 0.12);
+    }
+
+    header {
+      margin-bottom: 2rem;
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+      padding: 1.2rem 1.4rem;
+      border-radius: 14px;
+      background: radial-gradient(circle at top left, #1c2540, #050816);
+      box-shadow: 0 16px 34px rgba(0,0,0,0.65);
+    }
+
+    section#sketch {
+      background: radial-gradient(circle at top, #1d314f, #050816);
+    }
+
+    .diagram-img {
+      width: 100%;
+      max-width: 820px;
+      border-radius: 10px;
+      display: block;
+      margin: 0.75rem auto 0;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
+      background: #000;
+    }
+
+    .sketch-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    .sketch-wrapper iframe {
+      border: none;
+      border-radius: 12px;
+      max-width: 100%;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.7);
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #a5b4fc;
+      border-top: 1px solid rgba(148, 163, 255, 0.25);
+      padding-top: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem;
+      }
+
+      nav {
+        margin: -1rem -1rem 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand">Aquatic Food Chain</div>
+    <div class="nav-links">
+      <a href="#intent">Intent</a>
+      <a href="#uml">UML</a>
+      <a href="#flowchart">Flowchart</a>
+      <a href="#sketch">Sketch</a>
+      <a href="#process">Process</a>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header>
+    <h1>Aquatic Food Chain – OOP p5.js System</h1>
+    <p>
+      This project uses an aquatic food chain as a lens to explore object-oriented programming
+      and emergent behaviour in p5.js. The system focuses on four key elements:
+      <strong>Plankton</strong>, <strong>Small Fish</strong>, <strong>Predator Fish</strong>,
+      and an <strong>OceanSystem</strong> that coordinates their interactions.
+    </p>
+  </header>
+
+  <!-- INTENT -->
+  <section id="intent">
+    <h2>Intent</h2>
+    <p>
+      My intent was to model a simple but believable underwater ecosystem where behaviour emerges
+      from local rules, rather than a pre-scripted animation. Each organism is implemented as a
+      class with its own attributes and methods: plankton drift and glow, small fish school together
+      and feed on plankton, and a larger predator fish hunts the school.
+    </p>
+    <p>
+      The <strong>OceanSystem</strong> manages these organisms and enforces the food chain:
+      <em>plankton → small fish → predator</em>. Users can interact with the system by adding
+      more small fish or plankton with the mouse and toggling predator behaviour. This combination
+      of autonomy and interaction creates a dynamic, continuously changing scene.
+    </p>
+  </section>
+
+  <!-- UML -->
+  <section id="uml">
+    <h2>UML Diagram</h2>
+    <p>
+      The UML class diagram below describes the structure of the system. The core classes are:
+      <strong>Plankton</strong>, <strong>SmallFish</strong>, <strong>PredatorFish</strong>, and
+      <strong>OceanSystem</strong>. SmallFish and PredatorFish share movement logic, while
+      PredatorFish extends SmallFish with hunting behaviour. OceanSystem aggregates lists of
+      all organisms and coordinates updates each frame.
+    </p>
+    <!-- Replace src with your exported UML PNG -->
+    <img
+      src="images/aquatic_uml.png"
+      alt="UML class diagram of the Aquatic Food Chain system"
+      class="diagram-img"
+    />
+  </section>
+
+  <!-- FLOWCHART -->
+  <section id="flowchart">
+    <h2>Flowchart</h2>
+    <p>
+      The flowchart focuses on the core decision-making loop inside the OceanSystem using only
+      the four main elements: OceanSystem, Plankton, Small Fish, and Predator. The system runs
+      continuously, checking for simple conditions that drive the food chain.
+    </p>
+
+    <!-- Replace src with your exported flowchart PNG -->
+    <img
+      src="images/aquatic_flowchart.png"
+      alt="Simple flowchart of the Aquatic Food Chain system"
+      class="diagram-img"
+    />
+
+    <h3>Flowchart Explanation</h3>
+    <p>
+      This flowchart represents the essential logic of the aquatic food chain system using only four
+      key elements: <strong>Plankton</strong>, <strong>Small Fish</strong>, <strong>Predator</strong>,
+      and the <strong>OceanSystem</strong> that manages them. The flow begins with the OceanSystem
+      running continuously. At each step, the system checks three simple conditions.
+    </p>
+    <p>
+      First, it determines whether any Small Fish are close enough to nearby Plankton. If they are,
+      the fish eat the plankton. If not, the system checks the second condition: whether the Predator
+      is close to any Small Fish. If a predator is within range, it eats the fish.
+    </p>
+    <p>
+      If neither interaction happens, the system evaluates the third condition: whether the plankton
+      population has dropped below a certain limit. If plankton levels are low, the OceanSystem
+      respawns new plankton to keep the environment balanced. After each outcome, the flow returns
+      to the beginning, creating a continuous cycle of feeding, hunting, and population
+      replenishment.
+    </p>
+    <p>
+      This simple loop captures the core dynamics of the ecosystem:
+      <em>Plankton feed the Small Fish, Small Fish feed the Predator, and the OceanSystem keeps the
+      system stable by managing population levels.</em>
+    </p>
+  </section>
+
+  <!-- SKETCH -->
+  <section id="sketch">
+    <h2>Embedded p5.js Sketch</h2>
+    <p>
+      The live sketch below is hosted on the p5.js Web Editor. You can interact with the system:
+    </p>
+    <ul>
+      <li><strong>Left click</strong> – add a new Small Fish</li>
+      <li><strong>Right click</strong> – add Plankton</li>
+      <li><strong>Press “P”</strong> – toggle the Predator on/off</li>
+      <li>Use the sliders in the canvas – adjust schooling and predator aggression</li>
+    </ul>
+
+    <div class="sketch-wrapper">
+      <!-- Your embedded p5.js sketch -->
+      <iframe
+        src="https://editor.p5js.org/Tobalated/full/IwexaErQx"
+        width="900"
+        height="550"
+        loading="lazy"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <h2>Process</h2>
+    <p>
+      I started by building a basic flocking system with a SmallFish class: each fish aligns with
+      its neighbours, moves towards the group, and keeps a small personal space to avoid overlap.
+      Once the schooling behaviour felt natural, I introduced Plankton as simple glowing particles
+      scattered around the scene, and made the fish seek and eat them when they came within range.
+    </p>
+    <p>
+      Next, I added a PredatorFish class that extends SmallFish but overrides its behaviour to
+      chase the nearest fish within a larger radius. Whenever the predator gets close enough, it
+      removes that fish from the system. Over time, this creates visible patterns where the school
+      splits, reforms, and redirects around both food sources and threats.
+    </p>
+    <p>
+      Finally, I wrapped everything in an OceanSystem manager that updates organisms, enforces the
+      food chain, respawns plankton when levels are low, and exposes interactive controls via the
+      sliders and mouse. The result is an ecosystem where motion, feeding, and hunting feel
+      emergent rather than explicitly choreographed.
+    </p>
+  </section>
+
+  <footer>
+    <p>
+      Aquatic Food Chain – an object-oriented p5.js ecosystem exploring local rules,
+      interaction, and emergent behaviour.
+    </p>
+  </footer>
+</body>
+</html>
