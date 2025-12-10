@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pattern, Rhythm, and Movement — p5.js</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Full-screen p5.js canvas goes here -->
+  <div id="p5-container"></div>
+
+  <!-- Glowing DOCUMENTATION CTA -->
+  <button id="docButton">DOCUMENTATION</button>
+
+  <!-- Documentation Overlay -->
+  <div id="docOverlay" class="doc-overlay">
+    <div class="doc-modal">
+      <button class="doc-close" data-close>&times;</button>
+      <h1>Pattern, Rhythm, and Movement — p5.js Composition</h1>
+
+      <p>
+        This project explores pattern-making, rhythm, color variation, and complex movement using p5.js.
+        The final visual is a dynamic grid where each tile reacts to time, noise, and spatial position,
+        creating a rhythmic composition that shifts in color, form, and motion.
+      </p>
+
+      <h2>Project Overview</h2>
+      <p>The goal was to:</p>
+      <ul>
+        <li>Create a visual pattern that fills the entire window</li>
+        <li>Use HSB color mode</li>
+        <li>Use loops to generate variations and tiling</li>
+        <li>Show symmetry / structure across the grid</li>
+        <li>Add rhythmic animation</li>
+        <li>Add non-linear movement using noise + sine waves</li>
+        <li>Document the process (problems + solutions)</li>
+        <li>Reflect on one key problem</li>
+      </ul>
+
+      <h2>Process: Problems &amp; Solutions</h2>
+
+      <h3>1. Getting the grid to feel rhythmic, not random</h3>
+      <p>
+        My early sketches looked either too chaotic or too stiff. Even though I had a grid,
+        the motion didn’t feel cohesive.
+      </p>
+      <p>
+        I used normalized coordinates (u, v) centered around (0,0) and calculated radial distance
+        (distCenter) and angle (atan2). These gave the composition a strong underlying structure
+        that unified all motion.
+      </p>
+
+      <h3>2. Balancing symmetry with variation</h3>
+      <p>
+        When everything was symmetrical, the pattern looked predictable. When I added randomness,
+        the structure broke completely.
+      </p>
+      <p>
+        I used symmetry in the spatial math (angle + distance), and variation in motion
+        (layered noise + sine waves). This preserved structure while keeping animation lively.
+      </p>
+
+      <h3>3. Creating non-linear movement without jitter</h3>
+      <p>
+        Using random() made the tiles shake and jitter, which was visually unpleasant and
+        technically not rhythmic.
+      </p>
+      <p>
+        I replaced randomness with Perlin noise and oscillating trigonometric functions.
+        These produce smooth, wave-like movement that remains complex without becoming chaotic.
+      </p>
+
+      <h3>4. Controlling HSB colors (too bright or too dull)</h3>
+      <p>
+        HSB made it easy to produce overly saturated neon colors that overwhelmed the visuals.
+      </p>
+      <p>
+        I mapped saturation to distCenter and brightness to the wave value, giving the composition
+        a calm center with stronger accents toward the outer rings.
+      </p>
+
+      <h3>5. Keeping the entire canvas active</h3>
+      <p>
+        Some early tests concentrated all motion in the center while the edges felt boring.
+      </p>
+      <p>
+        I made the wave function depend on distance:
+        <code>sin(distCenter * 10 - t * 4 + noise)</code>.
+        This sends ripples across the entire window so no part feels static.
+      </p>
+
+      <h2>Reflection: Most Interesting Problem</h2>
+      <p>
+        One of the most interesting challenges was designing motion that felt complex and non-linear
+        without becoming chaotic. At first, I used random() to drive the variation in movement.
+        This technically introduced change, but the visual outcome was jittery and uncomfortable.
+        Tiles snapped unpredictably each frame, and the piece lacked rhythm. When I tried stacking
+        multiple sine waves to fix that, the motion became too busy—everything oscillated in different,
+        conflicting directions, and the pattern lost coherence.
+      </p>
+      <p>
+        The breakthrough came when I combined noise() with a few carefully tuned sine and cosine waves.
+        Noise introduced smooth, organic variation, while trigonometric waves provided rhythmic consistency.
+        Anchoring everything to radial coordinates (distCenter and angle) allowed each tile to have a unique
+        motion path but still feel like part of a unified system. This hybrid approach created the breathing,
+        flowing movement the composition needed.
+      </p>
+
+      <h2>Running the Sketch</h2>
+      <ul>
+        <li>Open this page in a browser or via GitHub Pages.</li>
+        <li>The p5.js sketch fills the full browser window; press the X or click outside the card to close.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- p5.js + sketch -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <script src="sketch.js"></script>
+
+  <!-- Small script for the CTA + overlay -->
+  <script>
+    const docButton = document.getElementById('docButton');
+    const docOverlay = document.getElementById('docOverlay');
+
+    docButton.addEventListener('click', () => {
+      docOverlay.classList.add('open');
+    });
+
+    docOverlay.addEventListener('click', (e) => {
+      if (e.target === docOverlay || e.target.hasAttribute('data-close')) {
+        docOverlay.classList.remove('open');
+      }
+    });
+  </script>
+</body>
+</html>

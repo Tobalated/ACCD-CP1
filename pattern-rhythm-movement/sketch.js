@@ -3,7 +3,8 @@ let rows = 18;
 let t = 0;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  const canvas = createCanvas(windowWidth, windowHeight);
+  canvas.parent('p5-container'); // attach to the full-screen container
   colorMode(HSB, 360, 100, 100, 100);
   rectMode(CENTER);
   noStroke();
