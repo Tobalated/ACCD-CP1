@@ -442,15 +442,7 @@
         </div>
       </section>
 
-      <!-- Ideation Sketches -->
-      <section id="sketches">
-        <h2 class="section-title">Ideation Sketches & Diagrams</h2>
-        <p class="section-intro">
-          I started by sketching the relationship between the user, the webcam, and the
-          on-screen system. These drawings helped me define how specific gestures map
-          to different visual states.
-        </p>
-
+      
         <div class="card">
           <h3>Interaction & System Sketches</h3>
           <div class="gallery-grid">
@@ -664,5 +656,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/p5.min.js"></script>
     <script src="https://unpkg.com/ml5@0.12.2/dist/ml5.min.js"></script>
     <script src="sketch.js"></script>
+
+    <script>
+  // Simple image lightbox
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+
+  document.querySelectorAll("#development .gallery-grid img").forEach((img) => {
+    img.addEventListener("click", () => {
+      lightboxImg.src = img.src;
+      lightbox.style.display = "flex";
+    });
+  });
+
+  lightbox.addEventListener("click", () => {
+    lightbox.style.display = "none";
+    lightboxImg.src = "";
+  });
+</script>
+
+<!-- Image Lightbox -->
+<div id="lightbox">
+  <img id="lightbox-img" />
+</div>
+
   </body>
 </html>

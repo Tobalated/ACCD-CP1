@@ -223,12 +223,26 @@ h2.section-title {
 
 /* ---------- GALLERY ---------- */
 
+/* Larger development screenshots */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 0.9rem;
-  margin-top: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(1200px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
 }
+
+/* Hover zoom for development screenshots */
+#development .gallery-grid figure {
+  cursor: zoom-in;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#development .gallery-grid figure:hover {
+  transform: scale(1.03);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+
 
 figure {
   margin: 0;
@@ -319,3 +333,23 @@ footer {
   color: var(--text-muted);
   border-top: 1px solid var(--border-subtle);
 }
+
+/* Lightbox overlay */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  cursor: zoom-out;
+}
+
+#lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 16px;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+}
+
