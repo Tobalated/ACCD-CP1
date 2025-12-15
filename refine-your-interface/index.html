@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Embodied Motion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Interactive prototype built with p5.js and ml5.js exploring embodied motion." />
+
+  <style>
+    /* =========================
+       RESET + BASE
+    ========================= */
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: #ffffff;
+      color: #111111;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========================
+       NAVIGATION (DARK)
+    ========================= */
+    .proto-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  background: linear-gradient(to bottom, #0b1020, #050816);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+
+  /* NEW: subtle shadow */
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.35),
+    0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+
+    .proto-nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .proto-nav-title {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      white-space: nowrap;
+    }
+
+    .proto-nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .proto-nav-links a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.75);
+      transition: color 0.2s ease;
+    }
+
+    .proto-nav-links a:hover {
+      color: #9fd1ff;
+    }
+
+    /* =========================
+       PAGE LAYOUT
+    ========================= */
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 56px 20px;
+    }
+
+    h1 {
+      font-size: clamp(30px, 4vw, 44px);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      margin-bottom: 14px;
+    }
+
+    .lede {
+      color: #555;
+      max-width: 72ch;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 28px;
+      scroll-margin-top: 90px;
+    }
+
+    ul {
+      margin-left: 18px;
+      color: #555;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    /* =========================
+       PROTOTYPE EMBED
+    ========================= */
+    .proto-shell {
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,0.12);
+      overflow: hidden;
+      background: #000;
+    }
+
+    .proto-shell iframe {
+      width: 100%;
+      height: min(70vh, 620px);
+      border: 0;
+      display: block;
+    }
+
+    .hint {
+      font-size: 14px;
+      color: #666;
+      margin-top: 10px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+    @media (max-width: 760px) {
+      .proto-nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+    }
+  </style>
+  <style>
+  section {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 24px;
+    margin-bottom: 28px;
+
+    /* subtle shadow */
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.06),
+      0 2px 6px rgba(0, 0, 0, 0.04);
+  }
+</style>
+<style>
+  .proto-footer {
+    margin-top: 80px;
+    background: linear-gradient(to top, #0b1020, #050816);
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .proto-footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 28px 20px;
+    text-align: center;
+  }
+
+  .proto-footer p {
+    margin: 0;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.6);
+  }
+</style>
+
+
+</head>
+
+<body>
+
+  <!-- =========================
+       NAV
+  ========================= -->
+  <nav class="proto-nav">
+    <div class="proto-nav-inner">
+      <div class="proto-nav-title">
+        REFINE YOUR INTERFACE · P5.JS + ML5.JS
+      </div>
+
+      <div class="proto-nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#sketches">Sketches</a>
+        <a href="#final-prototype">Prototype</a>
+        <a href="#live-demo">Live Demo</a>
+        <a href="#reflection">Reflection</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =========================
+       CONTENT
+  ========================= -->
+  <main class="wrap">
+
+    <section class="card" id="overview">
+      <h1>Embodied Motion</h1>
+      <p class="lede">
+        Embodied Motion is a high-fidelity interactive prototype that translates subtle human movement into an ambient visual system using real-time machine learning.
+      </p>
+      <p>
+        Built with p5.js and ml5.js, the project prioritizes look and feel while remaining technically real, stable, and fully functional. The scope is intentionally limited to a single interaction loop to ensure completion and clarity.
+      </p>
+    </section>
+
+    <section class="card" id="sketches">
+      <h2>Sketches & Iterations</h2>
+      <p>
+        Early sketches explored direct visualizations of PoseNet data, including skeletal overlays and keypoint mappings.
+        Through iteration, the system was simplified to focus on a small set of reliable signals, allowing the experience to move from raw data display to expressive interaction.
+      </p>
+      <p>
+        Each iteration reduced noise, clarified intent, and improved visual calmness.
+      </p>
+    </section>
+
+    <section class="card" id="final-prototype">
+      <h2>Final Prototype</h2>
+
+      <div class="proto-shell">
+        <iframe
+          src="./prototype/index.html"
+          title="Embodied Motion Prototype"
+          allow="camera; microphone"
+          loading="lazy">
+        </iframe>
+      </div>
+
+      <p class="hint">
+        If camera access is blocked inside the embed, open directly:
+        <a href="./prototype/index.html">Launch prototype</a>
+      </p>
+    </section>
+
+    <section class="card" id="live-demo">
+      <h2>Live Demo</h2>
+      <p>
+        The live prototype uses webcam input to track hand movement and translate distance and motion into particle flow.
+        All interactions are real-time and unsimulated.
+      </p>
+    </section>
+
+    <section class="card" id="reflection">
+      <h2>Reflection</h2>
+      <p>
+        Designing with machine learning required a shift from controlling outcomes to shaping relationships.
+        By limiting scope and committing to one interaction loop, the prototype evolved from exploration into a cohesive, finished experience.
+      </p>
+    </section>
+
+  </main>
+<footer class="proto-footer">
+  <div class="proto-footer-inner">
+    <p>
+      © Toba Oni 2025 · Embodied Motion · Interactive Prototype · p5.js + ml5.js 
+    </p>
+  </div>
+</footer>
+
+
+</body>
+</html>
