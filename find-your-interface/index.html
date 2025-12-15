@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Choreography of Everyday Objects – Interactive Prototype</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+      :root {
+        --bg-dark: #050816;
+        --bg-card: #0f1325;
+        --accent: #9fd1ff;
+        --accent-soft: rgba(159, 209, 255, 0.2);
+        --text-main: #f5f5f7;
+        --text-muted: #9a9aad;
+        --border-subtle: rgba(255, 255, 255, 0.06);
+        --radius-lg: 18px;
+        --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+        color: var(--text-main);
+        line-height: 1.6;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      /* ---------- HEADER ---------- */
+
+      header {
+        border-bottom: 1px solid var(--border-subtle);
+        position: sticky;
+        top: 0;
+        backdrop-filter: blur(16px);
+        background: linear-gradient(
+          to bottom,
+          rgba(2, 6, 23, 0.9),
+          rgba(2, 6, 23, 0.6),
+          transparent
+        );
+        z-index: 10;
+      }
+
+      .nav-inner {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 0.75rem 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .logo {
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+        margin: 0;
+        padding: 0;
+        font-size: 0.9rem;
+      }
+
+      nav a {
+        padding: 0.25rem 0.5rem;
+        border-radius: 999px;
+        transition: background 0.2s, color 0.2s;
+      }
+
+      nav a:hover {
+        background: var(--accent-soft);
+        color: var(--accent);
+      }
+
+      /* ---------- MAIN LAYOUT ---------- */
+
+      main {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 1.5rem 1.25rem 3rem;
+      }
+
+      /* ---------- HERO ---------- */
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.5fr);
+        gap: 2rem;
+        align-items: center;
+        padding: 2rem 1.25rem 2.5rem;
+        margin: 0 -1.25rem 1.5rem;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+
+      @media (max-width: 768px) {
+        .hero {
+          grid-template-columns: minmax(0, 1fr);
+          padding-top: 1.5rem;
+        }
+      }
+
+      .hero-text h1 {
+        font-size: clamp(2.2rem, 3vw, 2.8rem);
+        letter-spacing: 0.03em;
+        margin: 0 0 0.5rem;
+      }
+
+      .hero-tagline {
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--accent);
+        margin-bottom: 0.75rem;
+      }
+
+      .hero-text p {
+        color: var(--text-muted);
+        max-width: 34rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      .meta-pill {
+        border-radius: 999px;
+        border: 1px solid var(--border-subtle);
+        padding: 0.25rem 0.7rem;
+        background: rgba(15, 23, 42, 0.9);
+      }
+
+      .hero-media {
+        border-radius: 24px;
+        background: radial-gradient(circle at top left, #1d4ed8, #020617);
+        padding: 1.1rem;
+        box-shadow: var(--shadow-soft);
+        border: 1px solid var(--border-subtle);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-media img {
+        width: 100%;
+        display: block;
+        border-radius: 16px;
+        border: 1px solid rgba(148, 163, 184, 0.4);
+      }
+
+      .hero-badge {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        padding: 0.3rem 0.7rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(148, 163, 184, 0.4);
+      }
+
+      .hero-note {
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        padding: 0.35rem 0.7rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(148, 163, 184, 0.4);
+      }
+
+      /* ---------- SECTIONS ---------- */
+
+      h2.section-title {
+        font-size: 1.3rem;
+        margin-top: 2rem;
+        margin-bottom: 0.35rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+      }
+
+      .section-intro {
+        margin-top: 0;
+        color: var(--text-muted);
+        font-size: 0.95rem;
+        max-width: 640px;
+      }
+
+      .card {
+        background: radial-gradient(circle at top left, #111827, #020617 55%);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border-subtle);
+        padding: 1.25rem 1.25rem 1.1rem;
+        margin-top: 1rem;
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+      }
+
+      .card p {
+        margin-top: 0.25rem;
+      }
+
+      .two-column {
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+        gap: 1.5rem;
+      }
+
+      @media (max-width: 800px) {
+        .two-column {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+
+      /* ---------- GALLERY ---------- */
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 0.9rem;
+        margin-top: 0.75rem;
+      }
+
+      figure {
+        margin: 0;
+        border-radius: 14px;
+        overflow: hidden;
+        background: #020617;
+        border: 1px solid var(--border-subtle);
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+      }
+
+      figure img {
+        width: 100%;
+        display: block;
+        object-fit: cover;
+      }
+
+      figcaption {
+        padding: 0.5rem 0.75rem 0.6rem;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      /* ---------- TIMELINE ---------- */
+
+      .timeline {
+        list-style: none;
+        padding: 0;
+        margin: 0.5rem 0 0;
+        border-left: 1px solid var(--border-subtle);
+      }
+
+      .timeline-item {
+        padding-left: 1.1rem;
+        position: relative;
+        margin-bottom: 0.85rem;
+      }
+
+      .timeline-item::before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        border: 2px solid var(--accent);
+        background: #020617;
+        position: absolute;
+        left: -5px;
+        top: 0.3rem;
+      }
+
+      .timeline-label {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--text-muted);
+      }
+
+      /* ---------- LIVE DEMO CONTAINER (FIX) ---------- */
+
+      #canvas-container {
+        width: 100%;
+        height: 540px; /* important: visible space for the p5 canvas */
+        max-height: 650px;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        border: 1px solid var(--border-subtle);
+        background: radial-gradient(circle at top, #020617, #000);
+        position: relative;
+      }
+
+      #demo-instructions {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-top: 0.5rem;
+      }
+
+      /* ---------- REFLECTION ---------- */
+
+      .reflection-list {
+        padding-left: 1rem;
+        margin-top: 0.4rem;
+        color: var(--text-muted);
+      }
+
+      /* ---------- FOOTER ---------- */
+
+      footer {
+        max-width: 1080px;
+        margin: 1rem auto 0;
+        padding: 1rem 1.25rem 2rem;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        border-top: 1px solid var(--border-subtle);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sticky header -->
+    <header>
+      <div class="nav-inner">
+        <div class="logo">Interactive Prototype · p5.js + ml5.js</div>
+        <nav>
+          <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#sketches">Sketches</a></li>
+            <li><a href="#development">Prototype</a></li>
+            <li><a href="#demo">Live Demo</a></li>
+            <li><a href="#reflection">Reflection</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero" id="overview">
+        <div class="hero-text">
+          <div class="hero-tagline">Embodied Interaction · Everyday Objects</div>
+          <h1>Choreography of Everyday Objects</h1>
+          <p>
+            <strong>Choreography of Everyday Objects</strong> is an interactive
+            experience controlled entirely by physical gestures and simple household
+            objects. Using a laptop webcam, p5.js, and the ml5.js PoseNet model, the
+            system translates how I move my body and position objects into a
+            living, generative visual composition.
+          </p>
+          <p class="section-intro" style="margin-top: 0.4rem;">
+            This page documents my process: early sketches, system diagrams, in-progress
+            screenshots, and the first working prototype.
+          </p>
+
+          <div class="hero-meta">
+            <span class="meta-pill">Tooling: p5.js, ml5.js (PoseNet), JavaScript</span>
+            <span class="meta-pill">Interface: Webcam + Body + Objects</span>
+            <span class="meta-pill">Platform: Browser</span>
+          </div>
+        </div>
+
+        <div class="hero-media">
+          <div class="hero-badge">Prototype · WIP</div>
+          <img
+            src="assets/images/cover.png"
+            alt="Screenshot of interactive p5.js prototype reacting to body pose."
+          />
+          <div class="hero-note">Raise your hands · Lean · Experiment with objects</div>
+        </div>
+      </section>
+
+      <!-- Concept & Interaction -->
+      <section>
+        <h2 class="section-title">Concept & Interaction</h2>
+        <p class="section-intro">
+          The main question behind this project is: <em>How can everyday, non-digital
+          things become an interface for a digital system?</em> Instead of using a
+          mouse or keyboard, I rely on body pose and the presence of objects within
+          the webcam frame.
+        </p>
+
+        <div class="card two-column">
+          <div>
+            <h3>Core Idea</h3>
+            <p>
+              Standing in front of the webcam, the user becomes a choreographer. Raising
+              hands above the head, leaning left or right, or holding an object near
+              the torso all influence the visual output. The prototype uses PoseNet to
+              track key points such as wrists, shoulders, and nose, and maps those
+              positions to abstract visual “modes.”
+            </p>
+            <p>
+              The first prototype focuses on two primary modes:
+            </p>
+            <ul>
+              <li><strong>Mode A:</strong> Hands above head → circular, particle-like motion.</li>
+              <li><strong>Mode B:</strong> Hands down → structured grid that shifts with body lean.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Inputs & Outputs</h3>
+            <p><strong>Inputs (real-world):</strong></p>
+            <ul>
+              <li>Raise one or both hands above the head.</li>
+              <li>Lean left or right relative to the camera.</li>
+              <li>Move hands closer together or farther apart.</li>
+              <li>(Planned) Hold simple objects like a mug or book near the face or chest.</li>
+            </ul>
+            <p><strong>Outputs (on-screen):</strong></p>
+            <ul>
+              <li>Scene changes between circular and grid-based visuals.</li>
+              <li>Intensity and scale mapped to wrist distance.</li>
+              <li>Horizontal offset mapped to body lean.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Ideation Sketches -->
+      <section id="sketches">
+        <h2 class="section-title">Ideation Sketches & Diagrams</h2>
+        <p class="section-intro">
+          I started by sketching the relationship between the user, the webcam, and the
+          on-screen system. These drawings helped me define how specific gestures map
+          to different visual states.
+        </p>
+
+        <div class="card">
+          <h3>Interaction & System Sketches</h3>
+          <div class="gallery-grid">
+            <figure>
+              <img
+                src="assets/images/sketches/ideation1.jpg"
+                alt="Paper sketch showing a person in front of a laptop with arrows pointing to visual modes."
+              />
+              <figcaption>
+                Early interaction sketch showing the user, webcam field of view, and
+                arrows from body poses to visual modes.
+              </figcaption>
+            </figure>
+            <figure>
+              <img
+                src="assets/images/sketches/ideation2.jpg"
+                alt="Diagram of possible gestures like raising hands, leaning, and holding objects."
+              />
+              <figcaption>
+                Gesture map exploring which movements feel natural in a small home
+                workspace.
+              </figcaption>
+            </figure>
+            <figure>
+              <img
+                src="assets/images/sketches/interaction-diagram.jpg"
+                alt="Block diagram connecting webcam input to ml5 PoseNet to p5.js visuals."
+              />
+              <figcaption>
+                System diagram: webcam input → PoseNet → mapping logic → p5 visual
+                output (with optional audio layer in later iterations).
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- Prototype development -->
+      <section id="development">
+        <h2 class="section-title">Prototype Development</h2>
+        <p class="section-intro">
+          Below is a snapshot of how the prototype evolved—from a blank p5 canvas to a
+          working pose-driven interaction. Each stage is captured with a screenshot and
+          a short note.
+        </p>
+
+        <div class="card two-column">
+          <div>
+            <h3>Process Milestones</h3>
+            <ul class="timeline">
+              <li class="timeline-item">
+                <div class="timeline-label">01 · Environment Setup</div>
+                <p>
+                  Created a basic p5.js sketch and confirmed that the canvas renders
+                  correctly in the browser.
+                </p>
+              </li>
+              <li class="timeline-item">
+                <div class="timeline-label">02 · Webcam Integration</div>
+                <p>
+                  Connected the webcam using <code>createCapture(VIDEO)</code> and tested
+                  the video feed before hiding it for the final interaction.
+                </p>
+              </li>
+              <li class="timeline-item">
+                <div class="timeline-label">03 · PoseNet Working</div>
+                <p>
+                  Loaded the ml5 PoseNet model and visualized keypoints for the nose and
+                  wrists to confirm reliable tracking.
+                </p>
+              </li>
+              <li class="timeline-item">
+                <div class="timeline-label">04 · Gesture Mapping</div>
+                <p>
+                  Implemented logic to detect when both hands move above the head and
+                  used that as a switch between visual modes.
+                </p>
+              </li>
+              <li class="timeline-item">
+                <div class="timeline-label">05 · Visual Modes</div>
+                <p>
+                  Built two distinct visual systems: a circular particle field and a
+                  shifting grid, both modulated by pose data.
+                </p>
+              </li>
+              <li class="timeline-item">
+                <div class="timeline-label">06 · Refinement & Debug UI</div>
+                <p>
+                  Added on-screen labels and subtle styling tweaks to make the
+                  interaction clearer and easier to document.
+                </p>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>Development Screenshots</h3>
+            <div class="gallery-grid">
+              <figure>
+                <img
+                  src="assets/images/screenshots/01_blank_canvas.png"
+                  alt="Blank p5.js canvas."
+                />
+                <figcaption>01 · Blank p5.js canvas with environment configured.</figcaption>
+              </figure>
+              <figure>
+                <img
+                  src="assets/images/screenshots/03_pose_keypoints.png"
+                  alt="PoseNet keypoints drawn on webcam image."
+                />
+                <figcaption>03 · PoseNet detecting keypoints for nose and wrists.</figcaption>
+              </figure>
+              <figure>
+                <img
+                  src="assets/images/screenshots/04_modeA_hands_up.png"
+                  alt="Circular visual mode triggered by raised hands."
+                />
+                <figcaption>
+                  04 · Hands above head triggering circular “Mode A” particle choreography.
+                </figcaption>
+              </figure>
+              <figure>
+                <img
+                  src="assets/images/screenshots/05_modeB_hands_down.png"
+                  alt="Grid-based visual mode when hands are lowered."
+                />
+                <figcaption>
+                  05 · Hands lowered switching to grid-based “Mode B” visuals.
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Live demo -->
+      <section id="demo">
+        <h2 class="section-title">Live Prototype Demo</h2>
+        <p class="section-intro">
+          The sketch below runs the current version of the prototype. Ensure your
+          webcam is enabled in the browser, then step into the frame and start
+          experimenting with movement.
+        </p>
+
+        <div class="card">
+          <div id="canvas-container"></div>
+          <!-- instructions text below -->
+          <p id="demo-instructions">
+            <strong>How to interact:</strong>
+            Stand or sit so that your upper body is visible in the webcam. Raise both
+            hands above your head to switch to circular motion. Lower your hands to
+            return to the shifting grid. Lean left or right to slide the composition
+            horizontally. Vary the distance between your wrists to change the overall
+            intensity.  
+            <br />
+            <strong>Debug keys for documentation:</strong>
+            1 = Force Mode A, 2 = Force Mode B, 0 = Pose control, D = Toggle debug,
+            S = Save screenshot.
+          </p>
+        </div>
+      </section>
+
+      <!-- Reflection -->
+      <section id="reflection">
+        <h2 class="section-title">Reflection & Next Steps</h2>
+        <div class="card">
+          <h3>What I learned</h3>
+          <ul class="reflection-list">
+            <li>
+              Embodied interaction feels very different from mouse/keyboard input; it
+              requires thinking about posture, comfort, and fatigue.
+            </li>
+            <li>
+              Pose data is noisy and imperfect, which pushed me to design robust
+              mappings that still feel expressive even when tracking is not exact.
+            </li>
+            <li>
+              Progressive documentation (screenshots + sketches) helped me see the
+              evolution of the idea instead of just the final outcome.
+            </li>
+          </ul>
+
+          <h3>Future directions</h3>
+          <ul class="reflection-list">
+            <li>
+              Train a simple object classifier (e.g., mug vs. book vs. empty hands)
+              and map each class to a unique visual “universe.”
+            </li>
+            <li>
+              Add an ambient sound layer whose parameters are controlled by pose and
+              object presence.
+            </li>
+            <li>
+              Explore multi-person interaction where two people co-choreograph the
+              visuals together.
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Choreography of Everyday Objects · Interactive prototype built with p5.js and
+        ml5.js. All process images and sketches are from the development of this
+        project.
+      </p>
+    </footer>
+
+    <!-- Libraries + your sketch (ORDER MATTERS) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/p5.min.js"></script>
+    <script src="https://unpkg.com/ml5@0.12.2/dist/ml5.min.js"></script>
+    <script src="sketch.js"></script>
+  </body>
+</html>

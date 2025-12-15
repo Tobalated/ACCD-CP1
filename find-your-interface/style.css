@@ -1,0 +1,321 @@
+:root {
+  --bg-dark: #050816;
+  --bg-card: #0f1325;
+  --accent: #9fd1ff;
+  --accent-soft: rgba(159, 209, 255, 0.2);
+  --text-main: #f5f5f7;
+  --text-muted: #9a9aad;
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --radius-lg: 18px;
+  --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- HEADER ---------- */
+
+header {
+  border-bottom: 1px solid var(--border-subtle);
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(16px);
+  background: rgba(2, 6, 23, 0.65);
+  z-index: 10;
+}
+
+.nav-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+nav a {
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  transition: background 0.2s, color 0.2s;
+}
+
+nav a:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* ---------- MAIN LAYOUT ---------- */
+
+main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+}
+
+/* ---------- HERO ---------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+  gap: 2rem;
+  align-items: center;
+  padding: 2rem 1.25rem 2.5rem;
+  margin: 0 -1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 1.5rem;
+  }
+}
+
+.hero-text h1 {
+  font-size: clamp(2.2rem, 3vw, 2.8rem);
+  letter-spacing: 0.03em;
+  margin: 0 0 0.5rem;
+}
+
+.hero-tagline {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.hero-text p {
+  color: var(--text-muted);
+  max-width: 34rem;
+  margin-bottom: 1.25rem;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.meta-pill {
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  padding: 0.25rem 0.7rem;
+  background: rgba(15, 23, 42, 0.9);
+}
+
+.hero-media {
+  border-radius: 24px;
+  background: radial-gradient(circle at top left, #1d4ed8, #020617);
+  padding: 1.1rem;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-media img {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+.hero-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+.hero-note {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+/* ---------- SECTIONS ---------- */
+
+h2.section-title {
+  font-size: 1.3rem;
+  margin-top: 2rem;
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.section-intro {
+  margin-top: 0;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  max-width: 640px;
+}
+
+/* ---------- CARDS ---------- */
+
+.card {
+  background: radial-gradient(circle at top left, #111827, #020617 55%);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  padding: 1.25rem 1.25rem 1.1rem;
+  margin-top: 1rem;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 800px) {
+  .two-column {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- GALLERY ---------- */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.9rem;
+  margin-top: 0.75rem;
+}
+
+figure {
+  margin: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #020617;
+  border: 1px solid var(--border-subtle);
+}
+
+figure img {
+  width: 100%;
+  display: block;
+}
+
+figcaption {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ---------- TIMELINE ---------- */
+
+.timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+  border-left: 1px solid var(--border-subtle);
+}
+
+.timeline-item {
+  padding-left: 1.1rem;
+  position: relative;
+  margin-bottom: 0.85rem;
+}
+
+.timeline-item::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  border: 2px solid var(--accent);
+  background: #020617;
+  position: absolute;
+  left: -5px;
+  top: 0.3rem;
+}
+
+.timeline-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+}
+
+/* ---------- 🟦 FIXED LIVE DEMO CONTAINER ---------- */
+
+#canvas-container {
+  width: 100%;
+  height: 540px; /* <<< IMPORTANT: guarantees canvas is visible */
+  max-height: 650px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background: radial-gradient(circle at top, #020617, #000);
+  position: relative;
+}
+
+/* ---------- REFLECTION ---------- */
+
+.reflection-list {
+  padding-left: 1rem;
+  margin-top: 0.4rem;
+  color: var(--text-muted);
+}
+ /* Hide prototype WIP overlays on final page */
+.hero-badge,
+.hero-note {
+  display: none;
+}
+
+/* ---------- FOOTER ---------- */
+
+footer {
+  max-width: 1080px;
+  margin: 1rem auto 0;
+  padding: 1rem 1.25rem 2rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
+}
