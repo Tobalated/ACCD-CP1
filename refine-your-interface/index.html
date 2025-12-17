@@ -1,295 +1,284 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Embodied Motion</title>
+  <meta charset="UTF-8" />
+  <title>Interactive Falling Coins — Hand Gesture Prototype</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Interactive prototype built with p5.js and ml5.js exploring embodied motion." />
+  <meta name="description" content="A hand-gesture controlled interactive simulation using p5.js and ml5.js HandPose." />
 
   <style>
-    /* =========================
-       RESET + BASE
-    ========================= */
-    * { box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
+    :root{
+      --bg-dark:#050816;
+      --bg-card:#0f1325;
+      --accent:#9fd1ff;
+      --text-main:#f5f5f7;
+      --text-muted:#9a9aad;
+      --border-subtle: rgba(255,255,255,0.08);
+      --radius-lg: 18px;
+      --shadow-soft: 0 18px 40px rgba(0,0,0,0.45);
     }
 
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      background: #ffffff;
-      color: #111111;
-      line-height: 1.7;
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+      color: var(--text-main);
+      line-height:1.65;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    header{
+      border-bottom:1px solid var(--border-subtle);
+      backdrop-filter: blur(16px);
+      background: rgba(2,6,23,0.85);
     }
 
-    /* =========================
-       NAVIGATION (DARK)
-    ========================= */
-    .proto-nav {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-
-  background: linear-gradient(to bottom, #0b1020, #050816);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-
-  /* NEW: subtle shadow */
-  box-shadow:
-    0 6px 18px rgba(0, 0, 0, 0.35),
-    0 1px 0 rgba(255, 255, 255, 0.04);
-}
-
-
-    .proto-nav-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 14px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .proto-nav-title {
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.65);
-      white-space: nowrap;
-    }
-
-    .proto-nav-links {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .proto-nav-links a {
-      font-size: 14px;
-      color: rgba(255,255,255,0.75);
-      transition: color 0.2s ease;
-    }
-
-    .proto-nav-links a:hover {
-      color: #9fd1ff;
-    }
-
-    /* =========================
-       PAGE LAYOUT
-    ========================= */
-    .wrap {
+    .header-inner{
       max-width: 960px;
       margin: 0 auto;
-      padding: 56px 20px;
+      padding: 1rem 1.25rem;
     }
 
-    h1 {
-      font-size: clamp(30px, 4vw, 44px);
-      margin-bottom: 12px;
+    h1{
+      margin:0;
+      font-size:1.8rem;
+      letter-spacing:0.02em;
     }
 
-    h2 {
-      font-size: 18px;
-      margin-bottom: 12px;
+    .subtitle{
+      margin-top:0.25rem;
+      color:var(--text-muted);
+      font-size:0.95rem;
     }
 
-    p {
-      margin-bottom: 14px;
+    main{
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
     }
 
-    .lede {
-      color: #555;
-      max-width: 72ch;
+    section{
+      margin-top:2rem;
     }
 
-    .card {
-      background: #ffffff;
-      border: 1px solid rgba(0,0,0,0.08);
-      border-radius: 18px;
-      padding: 24px;
-      margin-bottom: 28px;
-      scroll-margin-top: 90px;
+    .card{
+      background: radial-gradient(circle at top left, #111827, #020617 55%);
+      border:1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding:1.25rem;
+      box-shadow: var(--shadow-soft);
     }
 
-    ul {
-      margin-left: 18px;
-      color: #555;
+    h2{
+      margin-top:0;
+      font-size:1.2rem;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
     }
 
-    li {
-      margin-bottom: 6px;
+    .muted{
+      color:var(--text-muted);
+      max-width:70ch;
     }
 
-    /* =========================
-       PROTOTYPE EMBED
-    ========================= */
-    .proto-shell {
-      border-radius: 14px;
-      border: 1px solid rgba(0,0,0,0.12);
-      overflow: hidden;
-      background: #000;
+    /* ---------- EMBED ---------- */
+    .p5-embed{
+      width:100%;
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius-lg);
+      overflow:hidden;
+      border:1px solid var(--border-subtle);
+      background:#000;
+      margin-top:1rem;
     }
 
-    .proto-shell iframe {
-      width: 100%;
-      height: min(70vh, 620px);
-      border: 0;
-      display: block;
+    .p5-embed iframe{
+      width:100%;
+      height:100%;
+      border:0;
     }
 
-    .hint {
-      font-size: 14px;
-      color: #666;
-      margin-top: 10px;
+    /* ---------- ITERATION GALLERY ---------- */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap:1rem;
+      margin-top:1rem;
     }
 
-    /* =========================
-       MOBILE
-    ========================= */
-    @media (max-width: 760px) {
-      .proto-nav-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
+    figure{
+      margin:0;
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid var(--border-subtle);
+      background:#020617;
+    }
+
+    figure img{
+      width:100%;
+      display:block;
+    }
+
+    figcaption{
+      padding:0.65rem 0.75rem;
+      font-size:0.85rem;
+      color:var(--text-muted);
+    }
+
+    ul{
+      padding-left:1.25rem;
+    }
+
+    li{
+      margin:0.4rem 0;
+    }
+
+    footer{
+      border-top:1px solid var(--border-subtle);
+      margin-top:3rem;
+      padding:1rem 1.25rem 2rem;
+      color:var(--text-muted);
+      font-size:0.85rem;
+      max-width:960px;
+      margin-left:auto;
+      margin-right:auto;
     }
   </style>
-  <style>
-  section {
-    background: #ffffff;
-    border-radius: 18px;
-    padding: 24px;
-    margin-bottom: 28px;
-
-    /* subtle shadow */
-    box-shadow:
-      0 8px 24px rgba(0, 0, 0, 0.06),
-      0 2px 6px rgba(0, 0, 0, 0.04);
-  }
-</style>
-<style>
-  .proto-footer {
-    margin-top: 80px;
-    background: linear-gradient(to top, #0b1020, #050816);
-    border-top: 1px solid rgba(255,255,255,0.08);
-  }
-
-  .proto-footer-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 28px 20px;
-    text-align: center;
-  }
-
-  .proto-footer p {
-    margin: 0;
-    font-size: 13px;
-    letter-spacing: 0.04em;
-    color: rgba(255,255,255,0.6);
-  }
-</style>
-
-
 </head>
 
 <body>
 
-  <!-- =========================
-       NAV
-  ========================= -->
-  <nav class="proto-nav">
-    <div class="proto-nav-inner">
-      <div class="proto-nav-title">
-        REFINE YOUR INTERFACE · P5.JS + ML5.JS
-      </div>
-
-      <div class="proto-nav-links">
-        <a href="#overview">Overview</a>
-        <a href="#sketches">Sketches</a>
-        <a href="#final-prototype">Prototype</a>
-        <a href="#live-demo">Live Demo</a>
-        <a href="#reflection">Reflection</a>
-      </div>
+<header>
+  <div class="header-inner">
+    <h1>Interactive Falling Coins</h1>
+    <div class="subtitle">
+      Hand-Gesture–Controlled Interactive Simulation · p5.js + ml5.js HandPose
     </div>
-  </nav>
-
-  <!-- =========================
-       CONTENT
-  ========================= -->
-  <main class="wrap">
-
-    <section class="card" id="overview">
-      <h1>Embodied Motion</h1>
-      <p class="lede">
-        Embodied Motion is a high-fidelity interactive prototype that translates subtle human movement into an ambient visual system using real-time machine learning.
-      </p>
-      <p>
-        Built with p5.js and ml5.js, the project prioritizes look and feel while remaining technically real, stable, and fully functional. The scope is intentionally limited to a single interaction loop to ensure completion and clarity.
-      </p>
-    </section>
-
-    <section class="card" id="sketches">
-      <h2>Sketches & Iterations</h2>
-      <p>
-        Early sketches explored direct visualizations of PoseNet data, including skeletal overlays and keypoint mappings.
-        Through iteration, the system was simplified to focus on a small set of reliable signals, allowing the experience to move from raw data display to expressive interaction.
-      </p>
-      <p>
-        Each iteration reduced noise, clarified intent, and improved visual calmness.
-      </p>
-    </section>
-
-    <section class="card" id="final-prototype">
-      <h2>Final Prototype</h2>
-
-      <div class="proto-shell">
-        <iframe
-          src="./prototype/index.html"
-          title="Embodied Motion Prototype"
-          allow="camera; microphone"
-          loading="lazy">
-        </iframe>
-      </div>
-
-      <p class="hint">
-        If camera access is blocked inside the embed, open directly:
-        <a href="./prototype/index.html">Launch prototype</a>
-      </p>
-    </section>
-
-    <section class="card" id="live-demo">
-      <h2>Live Demo</h2>
-      <p>
-        The live prototype uses webcam input to track hand movement and translate distance and motion into particle flow.
-        All interactions are real-time and unsimulated.
-      </p>
-    </section>
-
-    <section class="card" id="reflection">
-      <h2>Reflection</h2>
-      <p>
-        Designing with machine learning required a shift from controlling outcomes to shaping relationships.
-        By limiting scope and committing to one interaction loop, the prototype evolved from exploration into a cohesive, finished experience.
-      </p>
-    </section>
-
-  </main>
-<footer class="proto-footer">
-  <div class="proto-footer-inner">
-    <p>
-      © Toba Oni 2025 · Refine Your Interface · Embodied Motion · Interactive Prototype · p5.js + ml5.js 
-    </p>
   </div>
-</footer>
+</header>
 
+<main>
+
+  <!-- ABSTRACT -->
+  <section class="card">
+    <h2>Project Abstract</h2>
+    <p class="muted">
+      <strong>Interactive Falling Coins</strong> is a browser-based interactive
+      system that uses real-time hand tracking to translate simple finger gestures
+      into a gravity-driven visual simulation. Built with p5.js and ml5.js HandPose,
+      the project explores embodied interaction as an intuitive alternative to
+      traditional input devices.
+    </p>
+  </section>
+
+  <!-- LIVE SKETCH -->
+  <section class="card">
+    <h2>Live Prototype</h2>
+    <p class="muted">
+      This embedded sketch runs in real time using webcam-based hand tracking.
+      Allow camera access when prompted. Move your index finger in front of the
+      camera to generate falling coins.
+    </p>
+
+    <div class="p5-embed">
+      <iframe
+        src="https://editor.p5js.org/pattvira/full/DCTLTHUyU"
+        loading="lazy"
+        allow="camera"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section class="card">
+    <h2>Project Overview</h2>
+    <p class="muted">
+      The project investigates how minimal hand gestures can act as direct,
+      expressive inputs for digital systems. By mapping fingertip position to
+      particle generation, the system allows users to shape a dynamic visual
+      environment using only bodily movement.
+    </p>
+  </section>
+
+  <!-- ITERATIONS -->
+  <section class="card">
+    <h2>Iteration Process</h2>
+    <p class="muted">
+      The prototype was developed through a series of iterative stages, balancing
+      technical reliability with interaction clarity.
+    </p>
+
+    <div class="gallery">
+      <figure>
+        <img src="assets/screenshots/iteration-01.jpg" alt="Hand tracking setup" />
+        <figcaption>
+          <strong>Iteration 01 — Hand Tracking Setup.</strong>
+          Initial implementation of the ml5.js HandPose model to verify reliable
+          webcam input and index fingertip detection.
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img src="assets/screenshots/iteration-02.jpg" alt="Grid-based particle system" />
+        <figcaption>
+          <strong>Iteration 02 — Grid-Based Particle System.</strong>
+          Early version of the grid system used to simulate gravity-driven motion
+          and stacking behavior.
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img src="assets/screenshots/iteration-03.jpg" alt="Gesture mapping" />
+        <figcaption>
+          <strong>Iteration 03 — Gesture-to-Particle Mapping.</strong>
+          Mapping the index fingertip position to particle generation, enabling
+          direct hand-controlled interaction.
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img src="assets/screenshots/iteration-04.jpg" alt="Visual refinement" />
+        <figcaption>
+          <strong>Iteration 04 — Visual Refinement.</strong>
+          Refinement of coin appearance, opacity, and motion to improve visual
+          clarity and responsiveness.
+        </figcaption>
+      </figure>
+
+      
+    </div>
+  </section>
+
+  <!-- ROLE IN LIFE -->
+  <section class="card">
+    <h2>Role in Life</h2>
+    <p class="muted">
+      This prototype demonstrates how touchless, gesture-based interaction can
+      support creative systems, public installations, and accessible interfaces.
+      By removing traditional input devices, the project emphasizes the body as
+      a meaningful control surface.
+    </p>
+  </section>
+
+  <!-- REFLECTION -->
+  <section class="card">
+    <h2>Reflection</h2>
+    <p class="muted">
+      By limiting the interaction to a single gesture and a simple visual system,
+      the project prioritizes clarity, responsiveness, and stability. The work
+      illustrates how constraint-driven design can lead to expressive and engaging
+      embodied interactions.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  Interactive Falling Coins · Hand-gesture interaction prototype built with
+  p5.js and ml5.js HandPose
+</footer>
 
 </body>
 </html>
- 
