@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Designing Control Through Motion — Unity Prototype Proposal</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="badge">Unity Prototype • Interaction Study</div>
+      <h1>Designing Control Through Motion</h1>
+      <p class="subtitle">
+        Exploring how body movement can become a primary interface for digital interaction
+        through motion-to-action mapping in Unity.
+      </p>
+
+      <div class="meta">
+        <div class="meta-card">
+          <span class="meta-label">Format</span>
+          <span class="meta-value">Focused Prototype</span>
+        </div>
+        <div class="meta-card">
+          <span class="meta-label">Core Mechanic</span>
+          <span class="meta-value">Motion → Action Mapping</span>
+        </div>
+        <div class="meta-card">
+          <span class="meta-label">Experiments</span>
+          <span class="meta-value">Mouse Input • Camera Input</span>
+        </div>
+      </div>
+
+      <a class="cta" href="#proposal">View Proposal</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="proposal" class="grid">
+      <article class="card">
+        <h2>Concept Overview</h2>
+        <p>
+          This experiment investigates how physical movement can control a digital environment.
+          Instead of using traditional controllers, the prototype maps gestures (via camera input)
+          or simulated directional input (via mouse/keyboard) into responsive on-screen behavior.
+        </p>
+      </article>
+
+      <article class="card">
+        <h2>Core Focus</h2>
+        <ul class="list">
+          <li><strong>Detect directional input</strong> (left / right / up / down or gesture)</li>
+          <li><strong>Translate movement into behavior</strong> (move, scale, rotate)</li>
+          <li><strong>Design responsive feedback</strong> (visual cues that confirm control)</li>
+          <li><strong>Tune sensitivity + delay</strong> to test perceived control</li>
+        </ul>
+        <p class="note">
+          This is not a full game — it’s a single-feature interaction study.
+        </p>
+      </article>
+
+      <article class="card">
+        <h2>Experiments</h2>
+        <div class="split">
+          <div class="pill">
+            <h3>Experiment 1: Mouse Input</h3>
+            <p>
+              Use mouse/keyboard direction as a controlled baseline to validate mapping,
+              responsiveness, and feedback clarity.
+            </p>
+          </div>
+          <div class="pill">
+            <h3>Experiment 2: Camera Input</h3>
+            <p>
+              Use camera-based gesture detection to explore real movement control and compare
+              how it affects usability, timing, and emotional impact.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Expected Outcome</h2>
+        <ul class="list">
+          <li>A playable prototype where motion triggers real-time environmental response</li>
+          <li>Clear feedback that communicates system state (success, error, active input)</li>
+          <li>Adjustable parameters for sensitivity and delay testing</li>
+        </ul>
+      </article>
+
+      <article class="card wide">
+        <h2>Deliverables</h2>
+        <div class="deliverables">
+          <div class="deliverable">
+            <span class="kicker">Weekly</span>
+            <h4>Screenshot Documentation</h4>
+            <p>Progress captures showing interaction changes and environment response.</p>
+          </div>
+          <div class="deliverable">
+            <span class="kicker">Weekly</span>
+            <h4>Iteration Notes</h4>
+            <p>What changed, why it changed, and what was learned.</p>
+          </div>
+          <div class="deliverable">
+            <span class="kicker">Final</span>
+            <h4>Reflection</h4>
+            <p>Insights on usability, responsiveness, and emotional impact.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="footer-card">
+      <div>
+        <h2>Evaluation Questions</h2>
+        <p class="muted">
+          What feels intuitive? Where does delay break the sense of control? Which feedback
+          signals reduce confusion? How does camera input change the emotional feel compared
+          to mouse input?
+        </p>
+      </div>
+      <div class="tiny">
+        <span class="dot"></span> Motion mapping • Feedback design • Sensitivity tuning
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Designing Control Through Motion</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
