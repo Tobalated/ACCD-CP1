@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unstable Balance - Project Documentation</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+      background: #f4f6f9;
+      color: #222;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #1f3c88;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    section {
+      margin-bottom: 32px;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: #1f3c88;
+      margin-bottom: 12px;
+      border-left: 5px solid #1f3c88;
+      padding-left: 12px;
+    }
+
+    p {
+      margin-bottom: 12px;
+    }
+
+    ul {
+      margin-left: 20px;
+      margin-top: 10px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      margin-bottom: 16px;
+    }
+
+    table th,
+    table td {
+      border: 1px solid #d1d5db;
+      padding: 12px;
+      text-align: left;
+    }
+
+    table th {
+      background: #1f3c88;
+      color: #fff;
+    }
+
+    .highlight {
+      background: #eef4ff;
+      padding: 16px;
+      border-left: 5px solid #1f3c88;
+      border-radius: 8px;
+      margin-top: 12px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 2px solid #e5e7eb;
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 24px;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.25rem;
+      }
+
+      table th,
+      table td {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Unstable Balance</h1>
+      <p>Unity Project Documentation</p>
+    </header>
+
+    <section>
+      <h2>1. Project Overview</h2>
+      <p>
+        <strong>Unstable Balance</strong> is a physics-based Unity prototype where the player
+        must maintain balance on a shaking platform while avoiding and managing falling objects.
+        Unlike a traditional balancing game, objects first approach from the sides before dropping
+        onto the platform, creating unpredictability and tension.
+      </p>
+      <p>
+        The player must continuously tilt the platform to control the movement of incoming objects
+        and prevent them from falling off. Every object that falls off the platform causes the
+        player to lose a life, making the experience more intense and challenging.
+      </p>
+    </section>
+
+    <section>
+      <h2>2. Project Objective</h2>
+      <p>
+        The objective of this project is to explore how motion-based controls affect player
+        decision-making and reaction time in an unstable environment.
+      </p>
+      <ul>
+        <li>Motion-to-action mapping</li>
+        <li>Environmental instability through platform shaking</li>
+        <li>Reaction-based gameplay</li>
+        <li>Physics-driven object interaction</li>
+        <li>Risk and consequence through a life-loss system</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>3. Gameplay Description</h2>
+      <p>
+        The player stands on a central platform that continuously shakes, making balance harder to
+        maintain. Different objects appear from the sides of the screen, move toward the player,
+        and then drop onto the platform.
+      </p>
+      <p>
+        The player must tilt the platform left or right to manage these objects and keep them from
+        falling off. As the game progresses, the pressure increases due to continuous object drops
+        and platform instability.
+      </p>
+      <div class="highlight">
+        <p><strong>Game Over Condition:</strong> The game ends when the player loses all lives.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>4. Core Interaction Design</h2>
+      <p>
+        The interaction system is based on movement-driven control. The player influences the
+        platform’s rotation, which directly affects how objects slide, roll, and collide.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Input</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Left Arrow Key</td>
+            <td>Tilt platform left</td>
+          </tr>
+          <tr>
+            <td>Right Arrow Key</td>
+            <td>Tilt platform right</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>5. Game Mechanics</h2>
+      <ul>
+        <li><strong>Platform Tilt:</strong> The player rotates the platform left or right.</li>
+        <li><strong>Platform Shake:</strong> The platform shakes continuously to add instability.</li>
+        <li><strong>Side Entry Objects:</strong> Objects enter from the sides before dropping.</li>
+        <li><strong>Physics Interaction:</strong> Objects respond to gravity, tilt, and collision.</li>
+        <li><strong>Life System:</strong> Every object that falls off costs one life.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>6. System Behavior</h2>
+      <p>The game system operates in several stages:</p>
+      <ul>
+        <li><strong>Object Generation:</strong> Objects spawn from the left or right side.</li>
+        <li><strong>Movement Phase:</strong> Objects move horizontally toward the player.</li>
+        <li><strong>Drop Phase:</strong> Objects fall onto the platform.</li>
+        <li><strong>Physics Phase:</strong> Gravity and platform tilt determine movement.</li>
+        <li><strong>Failure Check:</strong> If an object falls off, one life is removed.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>7. Unity Components Used</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Rigidbody</td>
+            <td>Enables gravity and realistic object movement</td>
+          </tr>
+          <tr>
+            <td>Box Collider</td>
+            <td>Detects collision with the platform</td>
+          </tr>
+          <tr>
+            <td>Sphere/Cube Collider</td>
+            <td>Allows falling objects to interact with surfaces</td>
+          </tr>
+          <tr>
+            <td>Transform</td>
+            <td>Controls rotation and object movement</td>
+          </tr>
+          <tr>
+            <td>C# Scripts</td>
+            <td>Handles platform tilt, spawning, shaking, and lives</td>
+          </tr>
+          <tr>
+            <td>UI Text</td>
+            <td>Displays lives remaining and game status</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>8. Technical Implementation</h2>
+      <p>
+        The technical structure of the game relies on separate scripts for movement, instability,
+        spawning, and life tracking.
+      </p>
+      <ul>
+        <li><strong>Platform Control Script:</strong> Detects player input and rotates the platform.</li>
+        <li><strong>Shake Script:</strong> Applies small random movement or rotation to simulate instability.</li>
+        <li><strong>Spawn Script:</strong> Creates objects from side positions and sends them toward the platform.</li>
+        <li><strong>Life System Script:</strong> Reduces lives when objects fall off and triggers game over.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>9. Player Feedback</h2>
+      <p>The game provides immediate visual feedback to help the player understand the system state:</p>
+      <ul>
+        <li>Platform shaking communicates instability</li>
+        <li>Incoming side objects create anticipation</li>
+        <li>Falling objects show the result of poor balance</li>
+        <li>The life counter reflects performance and risk</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>10. Design Challenges</h2>
+      <p>Some of the key challenges during development include:</p>
+      <ul>
+        <li>Balancing the strength of the platform shake</li>
+        <li>Timing the spawn rate of incoming objects</li>
+        <li>Preventing physics glitches when multiple objects collide</li>
+        <li>Maintaining smooth and responsive platform controls</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>11. Future Improvements</h2>
+      <ul>
+        <li>Add different object sizes, shapes, and weights</li>
+        <li>Increase difficulty over time</li>
+        <li>Introduce sound effects and particle effects</li>
+        <li>Add a score system</li>
+        <li>Support gesture-based controls using camera input</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>12. Conclusion</h2>
+      <p>
+        <strong>Unstable Balance</strong> demonstrates how simple motion controls combined with
+        environmental instability can create engaging and challenging gameplay. By introducing
+        objects that approach from the sides, drop unpredictably, and threaten the player’s lives,
+        the project becomes more dynamic and suspenseful.
+      </p>
+      <p>
+        The prototype shows how motion, timing, and visual feedback can shape interactive digital
+        experiences in Unity.
+      </p>
+    </section>
+
+    <div class="footer">
+      <p>Prepared for Unity Class Project Documentation</p>
+    </div>
+  </div>
+</body>
+</html>
